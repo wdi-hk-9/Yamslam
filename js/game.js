@@ -30,11 +30,7 @@
 
 // Function to roll dice
 Game.prototype.rollDice = function() {
-  this.dice1 = Math.floor((Math.random() * 6)+1);
-  this.dice2 = Math.floor((Math.random() * 6)+1);
-  this.dice3 = Math.floor((Math.random() * 6)+1);
-  this.dice4 = Math.floor((Math.random() * 6)+1);
-  this.dice5 = Math.floor((Math.random() * 6)+1);
+  return Math.floor((Math.random() * 6)+1);
 }
 
 // Function to push dice element into array of active dice
@@ -47,28 +43,6 @@ Game.prototype.setKept = function(elem) {
   this.keptDice.push(elem);
 }
 
-// Function to change dice image (pass through game.dice1 or game.dice2 or ..., etc)
-Game.prototype.changeDiceImage = function(elem) {
-  switch(elem) {
-    case 1:
-      $("#dice1Image").attr("src", "images/1dice.png");
-      break;
-    case 2:
-      $("#dice1Image").attr("src", "images/2dice.png");
-      break;
-    case 3:
-      $("#dice1Image").attr("src", "images/3dice.png");
-      break;
-    case 4:
-      $("#dice1Image").attr("src", "images/4dice.png");
-      break;
-    case 5:
-      $("#dice1Image").attr("src", "images/5dice.png");
-      break;
-    case 6:
-      $("#dice1Image").attr("src", "images/6dice.png");
-      break;
-    default:
-      console.log("CHECK")
-  }
-}
+
+
+// Function to keep dice
