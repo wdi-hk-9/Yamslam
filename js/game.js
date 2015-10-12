@@ -2,30 +2,29 @@
 'use strict';
 
  var Game = function() {
-  this.dice1;
-  this.dice2;
-  this.dice3;
-  this.dice4;
-  this.dice5;
+  this.dices      = [1,2,3,4,5];
+  this.activeDice = [1,2,3,4,5];
+  this.keptDice   = [];
 
-  this.activeDice = [];
-  this.keptDice = [];
+  this.POINTS = {
+    "TWOPAIRPTS"       : 5,
+    "THREEOFAKINDPTS"  : 10,
+    "SMALLSTRAIGHTPTS" : 20,
+    "FLUSHPTS"         : 25,
+    "FULLHOUSEPTS"     : 30,
+    "FOUROFAKINDPTS"   : 40,
+    "LARGESTRAIGHTPTS" : 50
+  };
 
-  this.TWOPAIRPTS = 5;
-  this.THREEOFAKINDPTS = 10;
-  this.SMALLSTRAIGHTPTS = 20;
-  this.FLUSHPTS = 25;
-  this.FULLHOUSEPTS = 30;
-  this.FOUROFAKINDPTS = 40;
-  this.LARGESTRAIGHTPTS = 50;
-
-  this.p1TwoPairs;
-  this.p1ThreeOfAKind;
-  this.p1SmallStraight;
-  this.p1Flush;
-  this.p1FullHouse;
-  this.p1FourOfAKind;
-  this.p1LargeStraight;
+  this.p1 = {
+    "TwoPairs"      : 0,
+    "ThreeOfAKind"  : 0,
+    "SmallStraight" : 0,
+    "Flush"         : 0,
+    "FullHouse"     : 0,
+    "FourOfAKind"   : 0,
+    "LargeStraight" : 0
+  };
  }
 
 // Function to roll dice
