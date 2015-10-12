@@ -45,4 +45,3 @@ Game.prototype.setKept = function(elem) {
 
 
 
-// Function to keep dice

@@ -23,7 +23,7 @@ var changeDiceImage = function(elem) {
   var elemValue = elem.val();
   switch(elemValue) {
     case 1:
-      (elem img).attr("src", "images/1dice.png");
+      //(elem img).attr("src", "images/1dice.png");
       break;
     case 2:
       $("#dice1Image").attr("src", "images/2dice.png");
@@ -48,6 +48,23 @@ var changeDiceImage = function(elem) {
 });
 
 
+// Function to keep dice after a roll
+//var keepDice = function() {
+//}
+
+// when the img is clicked
+$("#dice1").on("click", function() {
+  // the img changes opacity
+  if ($("#dice1").css("opacity") === 1) {
+    $("#dice1").css("opacity", "0.4");
+  } else {
+    $("#dice1").css("opacity", "1");
+  }
+});
+
+// Function to change div opacity
+
+// the div is pushed into the keptDice array
 
 // this is for later; ignore for now
 // game.changeDiceImage(game.activeDice[i]);
