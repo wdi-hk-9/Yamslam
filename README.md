@@ -1,9 +1,7 @@
 # Yamslam
 
 ## Introduction
-This is a 2-player dice game that involves strategy. Players take turns to roll 5 dice up to 3 times to get the best combination. There are only 4 chips for each combination, so its a race to claim a chip before they are gone.
-
-There are eight different combination types. With every turn, players can take a chip for their combination. If the player
+This is a 2-player dice game that involves strategy. Players take turns to roll 5 dice up to 3 times to get the best combination. There are only 4 chips for each combination, so it's a race to claim a chip before they are gone.
 
 When all 5 dice match, the player has rolled a Yamslam! There’s not a chip for that. Instead the player takes any chip and a bonus turn.
 
@@ -21,7 +19,7 @@ The game ends when all the chips have been claimed. When the game ends, it will 
   - Click the "ROLL" button to roll the five dice.
   - The player can roll the five dice up to three times to achieve one of the eight combinations
   - After the first and second roll, the player can choose the dice they wish to keep and roll the remaining dice again
-  - The player can stop rolling the dice at any time if you achieve a satisfactory combination
+  - The player can stop rolling the dice at any time if they achieve a satisfactory combination
 
 - `Claim Chip`
   - There are eight possible types of combinations, seven of which have a corresponding chip. There are only four chips of each kind.
@@ -36,8 +34,8 @@ The game ends when all the chips have been claimed. When the game ends, it will 
   - If any of the three rolls wins a chip, the player may choose to end their turn immediately and collect. If a roll satisfies more than one combination, the player can choose the chip of their choice. The other player then goes.
   - If the dice do not match an available chip, the player does not collect a chip. The other player then goes.
 
-- `Ending the Game`
-  - The game ends when the last chip is taken.
+- `Winning the Game`
+  - The game ends when the last chip is taken. At the end of the game, the player with the higher score based on the sum of chip totals and any bonuses wins.
 
 ## [BONUS] Extra Features
 - `Point Bonus`
@@ -53,7 +51,7 @@ The game ends when all the chips have been claimed. When the game ends, it will 
 - `Discard a Chip from the Rack`
   - If during one round, no player collects a chip, discard one chip of the highest value from the rack.
 
-## Playing the Game
+## Display
 - `Available Chips`. Available chips are displayed with an adjacent number showing the number of chips of that type remaining.
 
 - `Player Turn`. Alerts whose turn it is, e.g. "Player 1's Turn".
