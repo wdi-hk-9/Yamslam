@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Yamslam</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row seven-cols">
+      <div id="chip5" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip5.png" alt="Chip 5" height="120" width = "120"></div>
+      <div id="chip10" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip10.png" alt="Chip 10" height="120" width = "120"></div>
+      <div id="chip20" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip20.png" alt="Chip 20" height="120" width = "120"></div>
+      <div id="chip25" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip25.png" alt="Chip 25" height="120" width = "120"></div>
+      <div id="chip30" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip30.png" alt="Chip 30" height="120" width = "120"></div>
+      <div id="chip40" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip40.png" alt="Chip 40" height="120" width = "120"></div>
+      <div id="chip50" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip50.png" alt="Chip 50" height="120" width = "120"></div>
+    </div>
+  </div>
+
+
+  <div class="container" id="dice-box">
+
+    <div class="row">
+
+      <div class="col-md-3 text-center well" id="dice-box-left">Player <span>1</span>'s Turn</div>
+
+      <div class="col-md-6 text-center well" id="dice-box-middle">
+        <div class="row">
+          <span id="logo"><img src="images/yamslam_logo.png" alt="Yamslam Logo" height="100px"></span>
+        </div>
+
+        <div class="row">
+          <div id="dice1" class="col-md-2 col-md-offset-1"><img src="images/dice1.png" alt="Dice 1" height="80" width="80"></div>
+          <div id="dice2" class="col-md-2"><img src="images/dice2.png" alt="Dice 2" height="80" width="80"></div>
+          <div id="dice3" class="col-md-2"><img src="images/dice3.png" alt="Dice 3" height="80" width="80"></div>
+          <div id="dice4" class="col-md-2"><img src="images/dice4.png" alt="Dice 4" height="80" width="80"></div>
+          <div id="dice5" class="col-md-2"><img src="images/dice5.png" alt="Dice 5" height="80" width="80"></div>
+        </div>
+      </div>
+
+      <div class="col-md-3 text-center well" id="dice-box-right">
+        <button id="roll-btn" class="btn btn-warning">ROLL</button><br />
+        <p><span>2</span> Rolls Left</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <table class="table">
+          <tbody>
+            <tr>
+              <th class="col-md-1 text-center"></th>
+              <th class="col-md-1 text-center"></th>
+              <th class="col-md-1 text-center"><img class="img-responsive center-block" src="images/chip5.png" alt="Chip 5" height="65" width = "65"></th>
+              <th class="col-md-1 text-center"><img class="img-responsive center-block" src="images/chip10.png" alt="Chip 5" height="65" width = "65"></th>
+              <th class="col-md-1 text-center"><img class="img-responsive center-block" src="images/chip20.png" alt="Chip 5" height="65" width = "65"></th>
+              <th class="col-md-1 text-center"><img class="img-responsive center-block" src="images/chip25.png" alt="Chip 5" height="65" width = "65"></th>
+              <th class="col-md-1 text-center"><img class="img-responsive center-block" src="images/chip30.png" alt="Chip 5" height="65" width = "65"></th>
+              <th class="col-md-1 text-center"><img class="img-responsive center-block" src="images/chip40.png" alt="Chip 5" height="65" width = "65"></th>
+              <th class="col-md-1 text-center"><img class="img-responsive center-block" src="images/chip50.png" alt="Chip 50" height="65" width = "65"></th>
+            </tr>
+            <tr>
+              <th>Player 1</th>
+              <td class="col-md-1 text-center">0</td>
+              <td class="col-md-1 text-center"></td>
+              <td class="col-md-1 text-center"></td>
+              <td class="col-md-1 text-center"></td>
+              <td class="col-md-1 text-center"></td>
+              <td class="col-md-1 text-center"></td>
+              <td class="col-md-1 text-center"></td>
+              <td class="col-md-1 text-center"></td>
+            </tr>
+            <tr>
+              <th>Player 2</th>
+              <td class="col-md-1 text-center">0</td>
+              <td class="col-md-1 text-center"></td>
+              <td class="col-md-1 text-center"></td>
+              <td class="col-md-1 text-center"></td>
+              <td class="col-md-1 text-center"></td>
+              <td class="col-md-1 text-center"></td>
+              <td class="col-md-1 text-center"></td>
+              <td class="col-md-1 text-center"></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
