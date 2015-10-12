@@ -8,7 +8,7 @@ $("#roll-btn").on("click", function() {
 // Iterate through active dice array; roll and change dice image
   for (var i = 0; i < game.activeDice.length; i++) {
     var randomNum = game.rollDice();
-    var elem = $(game.activeDice[i])
+    var elem = $(game.activeDice[i]);
     // var elem = $("#dice1")
     // set value
     elem.val(randomNum);
@@ -17,28 +17,28 @@ $("#roll-btn").on("click", function() {
     changeDiceImage(elem);
   }
 });
-
+//$this = $("#expanderSign img");
+//$(game.activeDice[i] )
 // Function to change dice image
 var changeDiceImage = function(elem) {
-  var elemValue = elem.val();
-  switch(elemValue) {
+  switch(parseInt(elem.val())) {
     case 1:
-      //(elem img).attr("src", "images/1dice.png");
+      $this.img.attr("src", "images/1dice.png");
       break;
     case 2:
-      $("#dice1Image").attr("src", "images/2dice.png");
+      $this.img.attr("src", "images/2dice.png");
       break;
     case 3:
-      $("#dice1Image").attr("src", "images/3dicepng");
+      $this.img.attr("src", "images/3dicepng");
       break;
     case 4:
-      $("#dice1Image").attr("src", "images/4dice.png");
+      $this.img.attr("src", "images/4dice.png");
       break;
     case 5:
-      $("#dice1Image").attr("src", "images/5dice.png");
+      $this.img.attr("src", "images/5dice.png");
       break;
     case 6:
-      $("#dice1Image").attr("src", "images/6dice.png");
+      $this.img.attr("src", "images/6dice.png");
       break;
     default:
       console.log("CHECK")
@@ -47,27 +47,22 @@ var changeDiceImage = function(elem) {
 
 });
 
-
 // Function to keep dice after a roll
 //var keepDice = function() {
 //}
 
 // when the img is clicked
 $("#dice1").on("click", function() {
-  // the img changes opacity
-  if ($("#dice1").css("opacity") === 1) {
+  // change div opacity
+  if ($("#dice1").css("opacity") === "1") {
     $("#dice1").css("opacity", "0.4");
   } else {
     $("#dice1").css("opacity", "1");
   }
 });
 
-// Function to change div opacity
-
 // the div is pushed into the keptDice array
-
-// this is for later; ignore for now
-// game.changeDiceImage(game.activeDice[i]);
+// game.setKept($("#dice1"))
 
 // Function to change player turn
 
