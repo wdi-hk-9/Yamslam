@@ -1,12 +1,12 @@
 var Player = function() {
-  this.score = 0;
+  this.score   = 0;
   this.twoPair = 0;
-  this.three = 0;
-  this.small = 0;
-  this.flush = 0;
-  this.full = 0;
-  this.four = 0;
-  this.large = 0;
+  this.three   = 0;
+  this.small   = 0;
+  this.flush   = 0;
+  this.full    = 0;
+  this.four    = 0;
+  this.large   = 0;
 };
 
 //-----------------------------------------
@@ -15,7 +15,7 @@ var Player = function() {
 
 Player.prototype.takeTwoPair = function() {
   this.twoPair += 1;
-  this.score += 5;
+  this.score   += 5;
 };
 
 Player.prototype.takeThree = function() {
@@ -34,12 +34,12 @@ Player.prototype.takeFlush = function() {
 };
 
 Player.prototype.takeFull = function() {
-  this.full += 1;
+  this.full  += 1;
   this.score += 30;
 };
 
 Player.prototype.takeFour = function() {
-  this.four += 1;
+  this.four  += 1;
   this.score += 40;
 };
 

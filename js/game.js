@@ -9,15 +9,15 @@ var Game = function() {
   this.rollsRemain = this.MAXROLLS;
 
   this.twoPairChips = 4;
-  this.threeChips = 4;
-  this.smallChips = 4;
-  this.flushChips = 4;
-  this.fullChips = 4;
-  this.fourChips = 4;
-  this.largeChips = 4;
-}
+  this.threeChips   = 4;
+  this.smallChips   = 4;
+  this.flushChips   = 4;
+  this.fullChips    = 4;
+  this.fourChips    = 4;
+  this.largeChips   = 4;
+};
 
-// Function to roll all the active dices
+// Roll all the active dices
 Game.prototype.roll = function() {
   this.activeDice = this.activeDice.map(function(){
     return Math.floor((Math.random() * 6)+1);
@@ -55,18 +55,10 @@ Game.prototype.isTwoPair = function() {
   var sorted = this.keptDice.sort();
   if(sorted.length != 5) {
     return false;
-  }
-  else if (sorted[0] == sorted[1] && sorted[2] == sorted[3]) {
-    return true;
-  }
-  else if(sorted[1] == sorted[2] && sorted[3] == sorted[4]) {
-    return true;
-  }
-  else if(sorted[0] == sorted[1] && sorted[3] == sorted[4]) {
-    return true;
-  }
-  else {
-    return false;
+  } else {
+    return ((sorted[0] == sorted[1] && sorted[2] == sorted[3]) ||
+            (sorted[1] == sorted[2] && sorted[3] == sorted[4]) ||
+            (sorted[0] == sorted[1] && sorted[3] == sorted[4]));
   }
 };
 
@@ -76,37 +68,22 @@ Game.prototype.isThree = function() {
   var sorted = this.keptDice.sort();
   if(sorted.length != 5) {
     return false;
-  }
-  else if (sorted[0] == sorted[1] && sorted[1] == sorted[2]) {
-    return true;
-  }
-  else if(sorted[1] == sorted[2] && sorted[2] == sorted[3]) {
-    return true;
-  }
-  else if(sorted[2] == sorted[3] && sorted[3] == sorted[4]) {
-    return true;
-  }
-  else {
-    return false;
+  } else {
+    return ((sorted[0] == sorted[1] && sorted[1] == sorted[2]) ||
+            (sorted[1] == sorted[2] && sorted[2] == sorted[3]) ||
+            (sorted[2] == sorted[3] && sorted[3] == sorted[4]));
   }
 };
 
 // Function to check Small Straight (four consecutive numbers)
 Game.prototype.isSmall = function() {
-  var sorted = this.keptDice.sort(function(a, b) {
-    return a - b;
-  });
+  var sorted = this.keptDice.sort(function(a, b) { return a - b; });
+
   if(sorted.length != 5) {
     return false;
-  }
-  else if (sorted[0] == sorted[1] - 1 && sorted[1] == sorted[2] - 1 && sorted[2] == sorted[3] - 1) {
-    return true;
-  }
-  else if (sorted[1] == sorted[2] - 1 && sorted[2] == sorted[3] - 1 && sorted[3] == sorted[4] - 1) {
-    return true;
-  }
-  else {
-    return false;
+  } else {
+    return ((sorted[0] == sorted[1] - 1 && sorted[1] == sorted[2] - 1 && sorted[2] == sorted[3] - 1) ||
+            (sorted[1] == sorted[2] - 1 && sorted[2] == sorted[3] - 1 && sorted[3] == sorted[4] - 1));
   }
 };
 
@@ -114,40 +91,24 @@ Game.prototype.isSmall = function() {
 Game.prototype.isFlush = function() {
   var oddArr = [];
   var evenArr = [];
+
   for (var i = 0; i < this.keptDice.length; i++) {
-    if (this.keptDice[i] % 2 === 1) {
-      oddArr.push(this.keptDice[i]);
-    }
-    if (this.keptDice[i] % 2 === 0) {
-      evenArr.push(this.keptDice[i]);
-    }
+    if (this.keptDice[i] % 2 === 1) { oddArr.push( this.keptDice[i]); }
+    if (this.keptDice[i] % 2 === 0) { evenArr.push(this.keptDice[i]); }
   }
+
   if (oddArr.length == 5) {
     return true;
-  }
-  else if (evenArr.length == 5) {
-    return true;
-  }
-  else {
-    return false;
+  } else {
+    return (evenArr.length == 5);
   }
 };
 
 // Function to check Full House [a,a,a,b,b] or [a,a,b,b,b] in sorted array
 Game.prototype.isFull = function() {
   var sorted = this.keptDice.sort();
-  if (sorted[0] == sorted[1] && sorted[1] == sorted[2] && sorted[3] == sorted[4]) {
-    console.log("Full - A");
-    return true;
-  }
-  else if(sorted[0] == sorted[1] && sorted[2] == sorted[3] && sorted[3] == sorted[4]) {
-    console.log("Full - B");
-    return true;
-  }
-  else {
-    console.log("No Full")
-    return false;
-  }
+  return ((sorted[0] == sorted[1] && sorted[1] == sorted[2] && sorted[3] == sorted[4]) ||
+          (sorted[0] == sorted[1] && sorted[2] == sorted[3] && sorted[3] == sorted[4]));
 };
 
 // Function to check 4 Of A Kind [a,a,a,a,b] or [a,b,b,b,b] in sorted array
@@ -156,14 +117,9 @@ Game.prototype.isFour = function() {
   if(sorted.length != 5) {
     return false;
   }
-  else if (sorted[0] == sorted[1] && sorted[1] == sorted[2] && sorted[2] == sorted[3]) {
-    return true;
-  }
-  else if(sorted[1] == sorted[2] && sorted[2] == sorted[3] && sorted[3] == sorted[4]) {
-    return true;
-  }
   else {
-    return false;
+    return ((sorted[0] == sorted[1] && sorted[1] == sorted[2] && sorted[2] == sorted[3]) ||
+            (sorted[1] == sorted[2] && sorted[2] == sorted[3] && sorted[3] == sorted[4]));
   }
 };
 
@@ -172,31 +128,20 @@ Game.prototype.isLarge = function() {
   var sorted = this.keptDice.sort(function(a, b) {
     return a - b;
   });
-  if (sorted[0] == sorted[1] - 1 && sorted[1] == sorted[2] - 1 && sorted[2] == sorted[3] - 1 && sorted[3] == sorted[4] - 1) {
-    return true;
-  }
-  else {
-    return false;
-  }
+  return (sorted[0] == sorted[1] - 1 && sorted[1] == sorted[2] - 1 &&
+          sorted[2] == sorted[3] - 1 && sorted[3] == sorted[4] - 1);
 };
 
 // Function to check Yamslam (all dice show same face)
 Game.prototype.isYamslam = function() {
   if (this.keptDice.length == 5) {
     for (var i = 0; i < this.keptDice.length - 1; i++) {
-      if (this.keptDice[i] != this.keptDice[i+1]) {
-        return false;
-      }
-      else {
-        return true;
-      }
+      return (this.keptDice[i] == this.keptDice[i+1]);
     }
-  }
-  else {
+  } else {
     return false;
   }
 };
-
 
 
 // To test in console

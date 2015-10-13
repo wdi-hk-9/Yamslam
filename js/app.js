@@ -4,19 +4,20 @@ $(document).ready(function() {
   var p1 = new Player();
   var p2 = new Player();
 
-  // when the Roll button is clicked
+
+  // change dice image based on dice value
+  var changeDiceImages = function() {
+    $(".dice-active img").each(function(){
+      var roll = game.roll();
+      $(this).attr("src", "images/" + roll + "dice.png");
+      // how do I record the roll, i.e. the value of each dice so I can compare later? It is in var roll.
+    });
+  }
+
   $("#roll-btn").on("click", function() {
-    // as long as there is at least one roll remaining
     if(game.rollsRemain > 0) {
-      // change dice image based on dice value
-      $(".dice-active img").each(function(){
-        var roll = game.roll();
-        $(this).attr("src", "images/" + roll + "dice.png");
-        // how do I record the roll, i.e. the value of each dice so I can compare later? It is in var roll.
-      })
-      // decrement rollsRemain
+      changeDiceImages();
       game.rollsRemain--;
-      // change the correspo1nding rolls remaining in html
       $("#rolls-remain").html(game.rollsRemain);
     }
   });
