@@ -224,14 +224,3 @@ game.isFour();
 game.isLarge();
 game.isSmall();
 game.isFlush();
-
-  // this.POINTS = {
-  //   "TWOPAIRPTS"       : 5,
-  //   "THREEOFAKINDPTS"  : 10,
-  //   "SMALLSTRAIGHTPTS" : 20,
-  //   "FLUSHPTS"         : 25,
-  //   "FULLHOUSEPTS"     : 30,
-  //   "FOUROFAKINDPTS"   : 40,
-  //   "LARGESTRAIGHTPTS" : 50
-  // };
-
