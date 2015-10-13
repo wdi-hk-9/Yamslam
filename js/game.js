@@ -35,24 +35,7 @@ Game.prototype.printBoard = function() {
   console.log(" KEPT:  " + this.keptDice);
 }
 
-// Function to check Yamslam (all dice show same face)
-Game.prototype.isYamslam = function() {
-  if (this.keptDice.length == 5) {
-    for (var i = 0; i < this.keptDice.length; i++) {
-      if (this.keptDice[i] != this.keptDice[i+1]) {
-        return false;
-      }
-      else {
-        return true;
-      }
-    }
-  }
-  else {
-    return false;
-  }
-};
-
-// Function to check Two Pair (a-a-b-b-c) or (a-a-b-c-c) or (a-b-b-c-c)
+// Function to check Two Pair [a,a,b,b,c] or [a,a,b,c,c] or [a,b,b,c,c] in sorted array
 Game.prototype.isTwoPair = function() {
   var sorted = this.keptDice.sort();
   if (sorted[0] == sorted[1] && sorted[2] == sorted[3]) {
@@ -69,7 +52,7 @@ Game.prototype.isTwoPair = function() {
   }
 };
 
-// Function to check 3 Of A Kind (a-a-a-b-c) or (a-b-b-b-c) or (a-b-c-c-c)
+// Function to check 3 Of A Kind [a,a,a,b,c] or [a,b,b,b,c] or [a,b,c,c,c] in sorted array
 Game.prototype.isThree = function() {
   var sorted = this.keptDice.sort();
   if (sorted[0] == sorted[1] && sorted[1] == sorted[2]) {
@@ -85,6 +68,85 @@ Game.prototype.isThree = function() {
     return false;
   }
 };
+
+// Function to check Small Straight (four consecutive numbers)
+Game.prototype.isSmall = function() {
+  var sorted = this.keptDice.sort(function(a, b) {
+    return a - b;
+  });
+  if (sorted[0] == sorted[1] - 1 && sorted[1] == sorted[2] - 1 && sorted[2] == sorted[3] - 1) {
+    return true;
+  }
+  else if (sorted[1] == sorted[2] - 1 && sorted[2] == sorted[3] - 1 && sorted[3] == sorted[4] - 1) {
+    return true;
+  }
+  else {
+    return false;
+  }
+};
+
+// Function to check Full House [a,a,a,b,b] or [a,a,b,b,b] in sorted array
+Game.prototype.isFull = function() {
+  var sorted = this.keptDice.sort();
+  if (sorted[0] == sorted[1] && sorted[1] == sorted[2] && sorted[3] == sorted[4]) {
+    console.log("Full - A");
+    return true;
+  }
+  else if(sorted[0] == sorted[1] && sorted[2] == sorted[3] && sorted[3] == sorted[4]) {
+    console.log("Full - B");
+    return true;
+  }
+  else {
+    console.log("No Full")
+    return false;
+  }
+};
+
+// Function to check 4 Of A Kind [a,a,a,a,b] or [a,b,b,b,b] in sorted array
+Game.prototype.isFour = function() {
+  var sorted = this.keptDice.sort();
+  if (sorted[0] == sorted[1] && sorted[1] == sorted[2] && sorted[2] == sorted[3]) {
+    return true;
+  }
+  else if(sorted[1] == sorted[2] && sorted[2] == sorted[3] && sorted[3] == sorted[4]) {
+    return true;
+  }
+  else {
+    return false;
+  }
+};
+
+// Function to check Large Straight (five consecutive numbers)
+Game.prototype.isLarge = function() {
+  var sorted = this.keptDice.sort(function(a, b) {
+    return a - b;
+  });
+  if (sorted[0] == sorted[1] - 1 && sorted[1] == sorted[2] - 1 && sorted[2] == sorted[3] - 1 && sorted[3] == sorted[4] - 1) {
+    return true;
+  }
+  else {
+    return false;
+  }
+};
+
+// Function to check Yamslam (all dice show same face)
+Game.prototype.isYamslam = function() {
+  if (this.keptDice.length == 5) {
+    for (var i = 0; i < this.keptDice.length - 1; i++) {
+      if (this.keptDice[i] != this.keptDice[i+1]) {
+        return false;
+      }
+      else {
+        return true;
+      }
+    }
+  }
+  else {
+    return false;
+  }
+};
+
+
 
 // To test in console
 var game = new Game();
@@ -115,6 +177,9 @@ game.printBoard();
 game.isYamslam();
 game.isTwoPair();
 game.isThree();
+game.isFour();
+game.isLarge();
+game.isSmall();
 
   // this.MAXROLLS = 3;
   // this.rollsRemain = this.MAXROLLS;
@@ -148,3 +213,15 @@ game.isThree();
   //   "FourOfAKind"   : 0,
   //   "LargeStraight" : 0
   // };
+
+// Function to check Small Straight (1-2-3-4) or (2-3-4-5) or (3-4-5-6) // to do
+// sort by numbers, not string. then if
+
+
+// Function to check Flush (all are 2, 4, 6) or (all are 1, 3, 5)
+// Game.prototype.isFour = function() {
+//   var even = function (number) {
+//     return number % 2;
+//   }
+  // either see if every will work - every/even and every/odd
+
