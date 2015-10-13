@@ -1,7 +1,6 @@
-var game;
 $(document).ready(function() {
 
-  game = new Game();
+  var game = new Game();
 
   // when the Roll button is clicked
   $("#roll-btn").on("click", function() {
@@ -9,7 +8,7 @@ $(document).ready(function() {
     if(game.rollsRemain > 0) {
       // change dice image based on dice value
       $(".dice-active img").each(function(){
-        var roll = game.rollDice();
+        var roll = game.roll();
         $(this).attr("src", "images/" + roll + "dice.png");
         // how do I record the roll, i.e. the value of each dice so I can compare later? It is in var roll.
       })

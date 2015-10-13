@@ -52,20 +52,35 @@ Game.prototype.isYamslam = function() {
   }
 };
 
-// Function to check Two Pair (a-a-b-b-c)
+// Function to check Two Pair (a-a-b-b-c) or (a-a-b-c-c) or (a-b-b-c-c)
 Game.prototype.isTwoPair = function() {
   var sorted = this.keptDice.sort();
+  console.log(sorted);
   if (sorted[0] == sorted[1] && sorted[2] == sorted[3]) {
+    console.log("Two Pair - A");
+    return true;
+  }
+  else if(sorted[1] == sorted[2] && sorted[3] == sorted[4]) {
+    console.log("Two Pair - B");
+    return true;
+  }
+  else if(sorted[0] == sorted[1] && sorted[3] == sorted[4]) {
+    console.log("Two Pair - C");
     return true;
   }
   else {
+    console.log("Nothing");
     return false;
   }
 };
 
+// Function to check 3 Of A Kind
 
 // To test in console
 var game = new Game();
+var p1 = new Player();
+var p2 = new Player();
+
 console.log("### GAME STARTED");
 game.roll();
 game.printBoard();
