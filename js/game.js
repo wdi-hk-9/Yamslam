@@ -4,6 +4,9 @@
 var Game = function() {
   this.activeDice = [0,0,0,0,0];
   this.keptDice   = [];
+
+  this.MAXROLLS = 3;
+  this.rollsRemain = this.MAXROLLS;
 }
 
 // Function to roll all the active dices
@@ -222,9 +225,6 @@ game.isLarge();
 game.isSmall();
 game.isFlush();
 
-  // this.MAXROLLS = 3;
-  // this.rollsRemain = this.MAXROLLS;
-
   // this.POINTS = {
   //   "TWOPAIRPTS"       : 5,
   //   "THREEOFAKINDPTS"  : 10,
@@ -235,22 +235,3 @@ game.isFlush();
   //   "LARGESTRAIGHTPTS" : 50
   // };
 
-  // this.p1 = {
-  //   "TwoPairs"      : 0,
-  //   "ThreeOfAKind"  : 0,
-  //   "SmallStraight" : 0,
-  //   "Flush"         : 0,
-  //   "FullHouse"     : 0,
-  //   "FourOfAKind"   : 0,
-  //   "LargeStraight" : 0
-  // };
-
-  // this.p2 = {
-  //   "TwoPairs"      : 0,
-  //   "ThreeOfAKind"  : 0,
-  //   "SmallStraight" : 0,
-  //   "Flush"         : 0,
-  //   "FullHouse"     : 0,
-  //   "FourOfAKind"   : 0,
-  //   "LargeStraight" : 0
-  // };
