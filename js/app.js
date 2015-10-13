@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
   var game = new Game();
+  var p1 = new Player();
+  var p2 = new Player();
 
   // when the Roll button is clicked
   $("#roll-btn").on("click", function() {
