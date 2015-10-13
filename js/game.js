@@ -35,22 +35,30 @@ Game.prototype.printBoard = function() {
   console.log(" KEPT:  " + this.keptDice);
 }
 
-// Function to check Yamslam
+// Function to check Yamslam (all dice show same face)
 Game.prototype.isYamslam = function() {
   if (this.keptDice.length == 5) {
     for (var i = 0; i < this.keptDice.length; i++) {
       if (this.keptDice[i] != this.keptDice[i+1]) {
-        console.log("not Yamslam");
         return false;
       }
       else {
-        console.log("Yamslam");
         return true;
       }
     }
   }
   else {
-    console.log("not enough dice to make Yamslam");
+    return false;
+  }
+};
+
+// Function to check Two Pair (a-a-b-b-c)
+Game.prototype.isTwoPair = function() {
+  var sorted = this.keptDice.sort();
+  if (sorted[0] == sorted[1] && sorted[2] == sorted[3]) {
+    return true;
+  }
+  else {
     return false;
   }
 };
@@ -80,6 +88,7 @@ console.log("** KEEP FIRST ACTIVE DICE");
 game.keepDice(game.activeDice[0]);
 game.printBoard();
 game.isYamslam();
+game.isTwoPair();
 
   // this.MAXROLLS = 3;
   // this.rollsRemain = this.MAXROLLS;
