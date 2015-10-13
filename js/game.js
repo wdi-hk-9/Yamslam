@@ -55,26 +55,36 @@ Game.prototype.isYamslam = function() {
 // Function to check Two Pair (a-a-b-b-c) or (a-a-b-c-c) or (a-b-b-c-c)
 Game.prototype.isTwoPair = function() {
   var sorted = this.keptDice.sort();
-  console.log(sorted);
   if (sorted[0] == sorted[1] && sorted[2] == sorted[3]) {
-    console.log("Two Pair - A");
     return true;
   }
   else if(sorted[1] == sorted[2] && sorted[3] == sorted[4]) {
-    console.log("Two Pair - B");
     return true;
   }
   else if(sorted[0] == sorted[1] && sorted[3] == sorted[4]) {
-    console.log("Two Pair - C");
     return true;
   }
   else {
-    console.log("Nothing");
     return false;
   }
 };
 
-// Function to check 3 Of A Kind
+// Function to check 3 Of A Kind (a-a-a-b-c) or (a-b-b-b-c) or (a-b-c-c-c)
+Game.prototype.isThree = function() {
+  var sorted = this.keptDice.sort();
+  if (sorted[0] == sorted[1] && sorted[1] == sorted[2]) {
+    return true;
+  }
+  else if(sorted[1] == sorted[2] && sorted[2] == sorted[3]) {
+    return true;
+  }
+  else if(sorted[2] == sorted[3] && sorted[3] == sorted[4]) {
+    return true;
+  }
+  else {
+    return false;
+  }
+};
 
 // To test in console
 var game = new Game();
@@ -104,6 +114,7 @@ game.keepDice(game.activeDice[0]);
 game.printBoard();
 game.isYamslam();
 game.isTwoPair();
+game.isThree();
 
   // this.MAXROLLS = 3;
   // this.rollsRemain = this.MAXROLLS;

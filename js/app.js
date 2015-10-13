@@ -14,7 +14,7 @@ $(document).ready(function() {
       })
       // decrement rollsRemain
       game.rollsRemain--;
-      // change the corresponding rolls remaining in html
+      // change the correspo1nding rolls remaining in html
       $("#rolls-remain").html(game.rollsRemain);
     }
   });
