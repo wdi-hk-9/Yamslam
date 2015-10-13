@@ -7,6 +7,14 @@ var Game = function() {
 
   this.MAXROLLS = 3;
   this.rollsRemain = this.MAXROLLS;
+
+  this.twoPairChips = 4;
+  this.threeChips = 4;
+  this.smallChips = 4;
+  this.flushChips = 4;
+  this.fullChips = 4;
+  this.fourChips = 4;
+  this.largeChips = 4;
 }
 
 // Function to roll all the active dices
@@ -36,7 +44,7 @@ Game.prototype.unkeepDice = function(diceVal) {
 Game.prototype.printBoard = function() {
   console.log("ACTIVE: " + this.activeDice);
   console.log(" KEPT:  " + this.keptDice);
-}
+};
 
 //------------------------------------------------
 // Functions to check combinations
