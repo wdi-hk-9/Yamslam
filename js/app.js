@@ -10,7 +10,7 @@ $(document).ready(function() {
   var chipBase = 0.5;
   var chipElig = 1;
   var chipGone = 0.05;
-  $(".chip").css("opacity", chipBase);
+  $(".chip").css("opacity", chipBase).off("click");
 
   var changeDiceImages = function() {
     game.roll();
@@ -51,11 +51,12 @@ $(document).ready(function() {
   var checkCombo = function() {
     if (game.isTwoPair()) {   // how to code for all chips?
       if (game.twoPairChips > 0) {
-        $("#chipTwoPair").css("opacity", chipElig);
-        $("#chipTwoPair").on("click", function() {
-        //   currPlayer.takeTwoPair();
-           game.twoPairChips--;
-           $("#chipTwoPair").css("opacity", chipBase);
+        console.log(p1);
+        $("#chipTwoPair").css("opacity", chipElig).on("click", function() {
+          p1.takeTwoPair(); // *** hard-coded!
+          game.twoPairChips--;
+          $("#chipTwoPair").css("opacity", chipBase);
+        console.log(p1);
          });
       }
     }
