@@ -9,13 +9,13 @@
 <body>
   <div class="container">
     <div class="row seven-cols">
-      <div id="chip5" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip5.png" alt="Chip 5" height="120" width = "120"></div>
-      <div id="chip10" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip10.png" alt="Chip 10" height="120" width = "120"></div>
-      <div id="chip20" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip20.png" alt="Chip 20" height="120" width = "120"></div>
-      <div id="chip25" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip25.png" alt="Chip 25" height="120" width = "120"></div>
-      <div id="chip30" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip30.png" alt="Chip 30" height="120" width = "120"></div>
-      <div id="chip40" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip40.png" alt="Chip 40" height="120" width = "120"></div>
-      <div id="chip50" class="col-md-1 well"><img class="img-responsive center-block" src="images/chip50.png" alt="Chip 50" height="120" width = "120"></div>
+      <div id="chipTwoPair" class="chip col-md-1 well"><img class="img-responsive center-block" src="images/chip5.png" alt="Two Pair Chip" height="120" width = "120"></div>
+      <div id="chipThree" class="chip col-md-1 well"><img class="img-responsive center-block" src="images/chip10.png" alt="Three of a Kind Chip" height="120" width = "120"></div>
+      <div id="chipSmall" class="chip col-md-1 well"><img class="img-responsive center-block" src="images/chip20.png" alt="Small Straight Chip" height="120" width = "120"></div>
+      <div id="chipFlush" class="chip col-md-1 well"><img class="img-responsive center-block" src="images/chip25.png" alt="Flush Chip" height="120" width = "120"></div>
+      <div id="chipFull" class="chip col-md-1 well"><img class="img-responsive center-block" src="images/chip30.png" alt="Full House Chip" height="120" width = "120"></div>
+      <div id="chipFour" class="chip col-md-1 well"><img class="img-responsive center-block" src="images/chip40.png" alt="Four of a Kind Chip" height="120" width = "120"></div>
+      <div id="chipLarge" class="chip col-md-1 well"><img class="img-responsive center-block" src="images/chip50.png" alt="Large Straight Chip" height="120" width = "120"></div>
     </div>
   </div>
 
@@ -23,13 +23,9 @@
     <div class="row">
       <div class="col-md-3 text-center well" id="dice-box-left">
         <p id="turn">Player <span>1</span>'s Turn</p>
-        <p id="prompts" class="alert alert-warning" role="alert">Prompts go here</p>
       </div>
 
       <div class="col-md-6 text-center well" id="dice-box-middle">
-        <div class="row">
-          <span id="logo"><img src="images/yamslam_logo.png" alt="Yamslam Logo" height="100px"></span>
-        </div>
 
         <div class="row">
           <div id="dice1" class="dice dice-active col-md-2 col-md-offset-1"><img id="dice1Image" src="images/1dice.png" alt="Dice 1" height="80" width="80"></div>
@@ -38,24 +34,30 @@
           <div id="dice4" class="dice dice-active col-md-2"><img src="images/4dice.png" alt="Dice 4" height="80" width="80"></div>
           <div id="dice5" class="dice dice-active col-md-2"><img src="images/5dice.png" alt="Dice 5" height="80" width="80"></div>
         </div>
+        <div class="row">
+          <span id="logo"><img src="images/yamslam_logo.png" alt="Yamslam Logo" height="100px"></span>
+        </div>
+
       </div>
 
       <div class="col-md-3 text-center well" id="dice-box-right">
-        <button id="roll-btn" class="btn btn-warning">ROLL</button><br />
-        <p><span id="rolls-remain">3</span> Rolls Remaining</p>
+        <button id="roll-btn" class="btn btn-warning">ROLL</button><br>
+        <p><span id="rolls-remain">3</span> Rolls Remaining</p><br><br>
+        <button id="ok-btn" class="btn btn-danger">OK</button>
+
       </div>
 
     </div>
   </div>
 
   <div class="container">
-    <div class="row">
+    <div class="row well">
       <div class="col-md-10 col-md-offset-1">
         <table class="table">
           <tbody>
             <tr>
               <th class="col-md-1 text-center"></th>
-              <th class="col-md-1 text-center">Score</th>
+              <th class="col-md-1 text-center"><br><br>Score</th>
               <th class="col-md-1 text-center"><img class="img-responsive center-block" src="images/chip5.png" alt="Chip 5" height="65" width = "65"></th>
               <th class="col-md-1 text-center"><img class="img-responsive center-block" src="images/chip10.png" alt="Chip 5" height="65" width = "65"></th>
               <th class="col-md-1 text-center"><img class="img-responsive center-block" src="images/chip20.png" alt="Chip 5" height="65" width = "65"></th>
