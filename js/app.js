@@ -59,22 +59,24 @@ $(document).ready(function() {
 
   $("#ok-btn").on("click", function() {
     if (game.currPlayer == 1) {
-      game.currPlayer == 2;
+      game.currPlayer = 2;
     }
     else {
-      game.currPlayer == 1;
+      game.currPlayer = 1;
     }
+    $("#player").html(game.currPlayer);
     game.resetDiceRolls();
+    $(".dice-active img").each(function(idx){
+      $(this).attr("src", "images/" + game.activeDice[idx] + "dice.png");
+      $(this).attr("data-value", game.activeDice[idx]);
+    });
+    $("#rolls-remain").html(game.rollsRemain);
   });
-  // reset game.activeDice and game.keptDice
-  // change "It's Player 1's Turn"
-  // reset shown dice
 
   // Game ends:
   // when no chips are left in the rack
   // add up chip totals, show score and "Player x won!"
   // ask play again? with buttons
   // if yes, reset board
-
 
 });

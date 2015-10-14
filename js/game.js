@@ -44,7 +44,7 @@ Game.prototype.unkeepDice = function(diceVal) {
 };
 
 Game.prototype.resetDiceRolls = function() {
-  this.activeDice   = [0,0,0,0,0];
+  this.activeDice   = [1,2,3,4,5];
   this.keptDice     = [];
   this.rollsRemain  = this.MAXROLLS;
 }
