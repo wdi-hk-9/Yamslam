@@ -167,39 +167,3 @@ Game.prototype.isLarge = function() {
 Game.prototype.isYamslam = function() {
   return this.keptDice[0] == this.keptDice[1] == this.keptDice[2] == this.keptDice[3] == this.keptDice[4];
 };
-
-
-// // To test in console
-// var game = new Game();
-// // var p1 = new Player();
-// // var p2 = new Player();
-
-// console.log("### GAME STARTED");
-// game.roll();
-// game.printBoard();
-// console.log("### KEEP FIRST ACTIVE DICE");
-// game.keepDice(game.activeDice[0]);
-// game.printBoard();
-// console.log("### ROLL");
-// game.roll();
-// game.printBoard();
-// console.log("### KEEP FIRST ACTIVE DICE");
-// game.keepDice(game.activeDice[0]);
-// game.printBoard();
-// console.log("### UNKEEP FIRST KEPT DICE");
-// game.unkeepDice(game.keptDice[0]);
-// game.printBoard();
-// console.log("### ROLL");
-// game.roll();
-// game.printBoard();
-// console.log("** KEEP FIRST ACTIVE DICE");
-// game.keepDice(game.activeDice[0]);
-// game.printBoard();
-// game.isYamslam();
-// game.isTwoPair();
-// game.isThree();
-// game.isFour();
-// game.isLarge();
-// game.isSmall();
-// game.isFlush();
-// game.isCombo();
