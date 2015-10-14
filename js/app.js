@@ -5,7 +5,6 @@ $(document).ready(function() {
   var p2 = new Player(2);
 
   var currPlayer = p1;
-  var winner = null;
 
   // opacity levels for images
   var OPACHALF = 0.5;
@@ -68,9 +67,9 @@ $(document).ready(function() {
     $(".chip").css("opacity", OPACHALF)
   });
 
-//-----------------------------------------------------------------------------
+//-------------------------------------------------------------
 // Functions to check dice vs combinations, take chip, update scores (not DRY)
-//-----------------------------------------------------------------------------
+//-------------------------------------------------------------
   var checkCombo = function() {
     if (game.isTwoPair() && game.twoPairChips > 0) {
       $("#chipTwoPair").css("opacity", OPACFULL).on("click", function() {
@@ -245,7 +244,7 @@ $(document).ready(function() {
     console.log(currPlayer);
     $("#player").html(currPlayer.id);
   }
-//--------------------------------------------------------------------------
+//-------------------------------------------------------------
 
   var resetDiceImgAttr = function() {
     $(".dice").children().removeClass("dice-kept");
@@ -257,50 +256,32 @@ $(document).ready(function() {
     }
 
   var updateScoreboard = function() {
-    if (currPlayer === p1) {
-      $("#p1-score").html(currPlayer.score);
-      $("#p1-twoPair").html(currPlayer.twoPair);
-      $("#p1-three").html(currPlayer.three);
-      $("#p1-small").html(currPlayer.small);
-      $("#p1-flush").html(currPlayer.flush);
-      $("#p1-full").html(currPlayer.full);
-      $("#p1-four").html(currPlayer.four);
-      $("#p1-large").html(currPlayer.large);
-    }
-    else {
-      $("#p2-score").html(currPlayer.score);
-      $("#p2-twoPair").html(currPlayer.twoPair);
-      $("#p2-three").html(currPlayer.three);
-      $("#p2-small").html(currPlayer.small);
-      $("#p2-flush").html(currPlayer.flush);
-      $("#p2-full").html(currPlayer.full);
-      $("#p2-four").html(currPlayer.four);
-      $("#p2-large").html(currPlayer.large);
-    }
-  };
+      $("#p1-score").html(p1.score);
+      $("#p1-twoPair").html(p1.twoPair);
+      $("#p1-three").html(p1.three);
+      $("#p1-small").html(p1.small);
+      $("#p1-flush").html(p1.flush);
+      $("#p1-full").html(p1.full);
+      $("#p1-four").html(p1.four);
+      $("#p1-large").html(p1.large);
 
-  var checkWinner = function () {
-    if (p1.score > p2.score) {
-      winner = p1;
-    }
-    else if (p1.score < p2.score) {
-      winner = p2;
-    }
-    else {
-      winner = null;
-    }
+      $("#p2-score").html(p2.score);
+      $("#p2-twoPair").html(p2.twoPair);
+      $("#p2-three").html(p2.three);
+      $("#p2-small").html(p2.small);
+      $("#p2-flush").html(p2.flush);
+      $("#p2-full").html(p2.full);
+      $("#p2-four").html(p2.four);
+      $("#p2-large").html(p2.large);
   };
 
   var checkGameOver = function() {
     if (game.allChipsGone()) {
-      if (winner != null) {
-        alert("Game Over. P1's Score: " + p1.score +". P2's Score: " + p2.score + ". The winner is " + winner + ". Play again?");
-      }
-      else {
-        alert("Game Over. P1's Score: " + p1.score +". P2's Score: " + p2.score + ". It is a tie. Play again?")
-      }
+      $("#modal-p1-score").html(p1.score);
+      $("#modal-p2-score").html(p2.score);
+      $("#gameOverModal").modal("show");
+      $("modal-yes").on("click", resetGame()); // NEED TO WRITE RESETGAME FUNCTION
     }
   };
-});
 
-// YAMSLAM - what to do if get Yamslam
+});
