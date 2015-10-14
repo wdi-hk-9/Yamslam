@@ -9,7 +9,6 @@ var Player = function() {
   this.large   = 0;
 };
 
-
 Player.prototype.resetPlayer = function() {
   this.score   = 0;
   this.twoPair = 0;

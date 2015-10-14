@@ -2,11 +2,11 @@
 'use strict';
 
 var Game = function() {
-  this.activeDice = [0,0,0,0,0];
-  this.keptDice   = [];
+  this.activeDice   = [0,0,0,0,0];
+  this.keptDice     = [];
 
-  this.MAXROLLS = 3;
-  this.rollsRemain = this.MAXROLLS;
+  this.MAXROLLS     = 3;
+  this.rollsRemain  = this.MAXROLLS;
 
   this.twoPairChips = 4;
   this.threeChips   = 4;
@@ -15,6 +15,8 @@ var Game = function() {
   this.fullChips    = 4;
   this.fourChips    = 4;
   this.largeChips   = 4;
+
+  this.currPlayer   = 1;
 };
 
 // Roll all the active dices
@@ -41,14 +43,14 @@ Game.prototype.unkeepDice = function(diceVal) {
   }
 };
 
-Game.prototype.changePlayer = function() {
-
+Game.prototype.resetDiceRolls = function() {
+  this.activeDice   = [0,0,0,0,0];
+  this.keptDice     = [];
+  this.rollsRemain  = this.MAXROLLS;
 }
 
 Game.prototype.resetGame = function() {
-  this.activeDice = [0,0,0,0,0];
-  this.keptDice   = [];
-  this.rollsRemain = this.MAXROLLS;
+  resetDiceRolls();
   this.twoPairChips = 4;
   this.threeChips   = 4;
   this.smallChips   = 4;
@@ -56,6 +58,7 @@ Game.prototype.resetGame = function() {
   this.fullChips    = 4;
   this.fourChips    = 4;
   this.largeChips   = 4;
+  this.currPlayer   = 1;
 };
 
 Game.prototype.printBoard = function() {

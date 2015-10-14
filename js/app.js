@@ -3,24 +3,13 @@ $(document).ready(function() {
   var game = new Game();
   var p1 = new Player();
   var p2 = new Player();
-  var counter = 1; // this is for figuring out player turns
-
 
   var changeDiceImages = function() {
-    $(".dice-active img").each(function(){
-      // this part doesn't work because game.roll() maps activeDice but before it just returned random numbers
-      var roll = game.roll();
-      console.log(roll);
-      $(this).attr("src", "images/" + roll + "dice.png");
+    game.roll();
+    $(".dice-active img").each(function(idx){
+      $(this).attr("src", "images/" + game.activeDice[idx] + "dice.png");
+      $(this).attr("data-value", game.activeDice[idx]);
     });
-  };
-
-  var changeDiceOpacity = function() {
-    if ($(this).css("opacity") === "1") {
-      $(this).css("opacity", "0.5");
-    } else {
-      $(this).css("opacity", "1");
-    }
   };
 
   $("#roll-btn").on("click", function() {
@@ -32,24 +21,60 @@ $(document).ready(function() {
   });
 
   $(".dice").on("click", function(event) {
-    changeDiceOpacity();
-    // game.keepDice() <-- but how to write the dice value?
+    var dice = $(this);
+    var value = parseInt(dice.children().attr('data-value'));
+    if (dice.css("opacity") === "1") {
+      dice.css("opacity", "0.5");
+      game.keepDice(value);
+    } else {
+      dice.css("opacity", "1");
+      game.unkeepDice(value);
+    }
   });
 
-});
+// change chip opacity based on the following conditions
+  // var changeChipOpacity = function() {
+  //   if (//chip all taken) {
+  //     $(this).css("opacity") === "0.05");
+  //   }
+  //   else if (//chip available and eligible) {
+  //     // once chip has been taken, check whether still available and change opacity
+  //     $(this).css("opacity") === "1");
+  //   }
+  //   else {
+  //     $(this).css("opacity") === "0.6");
+  //   }
+  // };
 
-  // if the keptDice corresponds to a combination:
-  // the corresponding chip "brightens"
-
-  // when player clicks on a chip to take it:
+  $("#chipTwoPair").on("click", function() { // how to code for any chip?
   // check to see if it is an eligible combination.
-  // [or we limit the chips that are clickable to the ones that are eligible?]
-  // if it is,
-  // the chip count in game goes down,
-  // call the player.takechip function
+  // or limit the chips that are clickable to the ones that are eligible?
+    if (game.isTwoPair()) {
+      if (game.twoPairChips > 0) {
+        game.twoPairChips--;
+        [p1].takeTwoPair(); // how to code for current player?
+      }
+    }
+  });
 
-  // when a stack is all taken, the chip image is hidden
+  $("#ok-btn").on("click", function() {
+    if (game.currPlayer == 1) {
+      game.currPlayer == 2;
+    }
+    else {
+      game.currPlayer == 1;
+    }
+    game.resetDiceRolls();
+  });
+  // reset game.activeDice and game.keptDice
+  // change "It's Player 1's Turn"
+  // reset shown dice
 
-  // when no chips are left in the rack, then the game finishes:
+  // Game ends:
+  // when no chips are left in the rack
+  // add up chip totals, show score and "Player x won!"
+  // ask play again? with buttons
+  // if yes, reset board
 
-  // banner to say game over with buttons to ask player whether play again
+
+});
