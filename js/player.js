@@ -1,4 +1,5 @@
-var Player = function() {
+var Player = function(id) {
+  this.id      = id;
   this.score   = 0;
   this.twoPair = 0;
   this.three   = 0;

@@ -8,14 +8,18 @@ var Game = function() {
   this.MAXROLLS     = 3;
   this.rollsRemain  = this.MAXROLLS;
 
-  this.twoPairChips = 4;
-  this.threeChips   = 4;
-  this.smallChips   = 4;
-  this.flushChips   = 4;
-  this.fullChips    = 4;
-  this.fourChips    = 4;
-  this.largeChips   = 4;
+  this.twoPairChips = 1;
+  this.threeChips   = 1;
+  this.smallChips   = 0;
+  this.flushChips   = 0;
+  this.fullChips    = 0;
+  this.fourChips    = 0;
+  this.largeChips   = 0;
 };
+
+Game.prototype.allChipsGone = function() {
+  return (this.twoPairChips + this.threeChips + this.smallChips + this.flushChips + this.fullChips + this.fourChips + this.largeChips === 0);
+}
 
 // Roll all the active dices
 Game.prototype.roll = function() {
@@ -84,9 +88,9 @@ Game.prototype.isTwoPair = function() {
   if(sorted.length < 4) {
     return false;
   } else {
-    return ((sorted[0] == sorted[1] && sorted[2] == sorted[3]) ||
-            (sorted[1] == sorted[2] && sorted[3] == sorted[4]) ||
-            (sorted[0] == sorted[1] && sorted[3] == sorted[4]));
+    return ((sorted[0] === sorted[1] && sorted[2] === sorted[3]) ||
+            (sorted[1] === sorted[2] && sorted[3] === sorted[4]) ||
+            (sorted[0] === sorted[1] && sorted[3] === sorted[4]));
   }
 };
 
@@ -94,12 +98,12 @@ Game.prototype.isTwoPair = function() {
 // Function to check 3 Of A Kind [a,a,a,b,c] or [a,b,b,b,c] or [a,b,c,c,c] in sorted array
 Game.prototype.isThree = function() {
   var sorted = this.keptDice.sort();
-  if(sorted.length != 5) {
+  if(sorted.length < 3) {
     return false;
   } else {
-    return ((sorted[0] == sorted[1] && sorted[1] == sorted[2]) ||
-            (sorted[1] == sorted[2] && sorted[2] == sorted[3]) ||
-            (sorted[2] == sorted[3] && sorted[3] == sorted[4]));
+    return ((sorted[0] === sorted[1] && sorted[1] === sorted[2]) ||
+            (sorted[1] === sorted[2] && sorted[2] === sorted[3]) ||
+            (sorted[2] === sorted[3] && sorted[3] === sorted[4]));
   }
 };
 
@@ -107,11 +111,11 @@ Game.prototype.isThree = function() {
 Game.prototype.isSmall = function() {
   var sorted = this.keptDice.sort(function(a, b) { return a - b; });
 
-  if(sorted.length != 5) {
+  if(sorted.length < 4) {
     return false;
   } else {
-    return ((sorted[0] == sorted[1] - 1 && sorted[1] == sorted[2] - 1 && sorted[2] == sorted[3] - 1) ||
-            (sorted[1] == sorted[2] - 1 && sorted[2] == sorted[3] - 1 && sorted[3] == sorted[4] - 1));
+    return ((sorted[0] === sorted[1] - 1 && sorted[1] === sorted[2] - 1 && sorted[2] === sorted[3] - 1) ||
+            (sorted[1] === sorted[2] - 1 && sorted[2] === sorted[3] - 1 && sorted[3] === sorted[4] - 1));
   }
 };
 
@@ -125,29 +129,29 @@ Game.prototype.isFlush = function() {
     if (this.keptDice[i] % 2 === 0) { evenArr.push(this.keptDice[i]); }
   }
 
-  if (oddArr.length == 5) {
+  if (oddArr.length === 5) {
     return true;
   } else {
-    return (evenArr.length == 5);
+    return (evenArr.length === 5);
   }
 };
 
 // Function to check Full House [a,a,a,b,b] or [a,a,b,b,b] in sorted array
 Game.prototype.isFull = function() {
   var sorted = this.keptDice.sort();
-  return ((sorted[0] == sorted[1] && sorted[1] == sorted[2] && sorted[3] == sorted[4]) ||
-          (sorted[0] == sorted[1] && sorted[2] == sorted[3] && sorted[3] == sorted[4]));
+  return ((sorted[0] === sorted[1] && sorted[1] === sorted[2] && sorted[3] === sorted[4]) ||
+          (sorted[0] === sorted[1] && sorted[2] === sorted[3] && sorted[3] === sorted[4]));
 };
 
 // Function to check 4 Of A Kind [a,a,a,a,b] or [a,b,b,b,b] in sorted array
 Game.prototype.isFour = function() {
   var sorted = this.keptDice.sort();
-  if(sorted.length != 5) {
+  if(sorted.length < 4) {
     return false;
   }
   else {
-    return ((sorted[0] == sorted[1] && sorted[1] == sorted[2] && sorted[2] == sorted[3]) ||
-            (sorted[1] == sorted[2] && sorted[2] == sorted[3] && sorted[3] == sorted[4]));
+    return ((sorted[0] === sorted[1] && sorted[1] === sorted[2] && sorted[2] === sorted[3]) ||
+            (sorted[1] === sorted[2] && sorted[2] === sorted[3] && sorted[3] === sorted[4]));
   }
 };
 
@@ -156,11 +160,11 @@ Game.prototype.isLarge = function() {
   var sorted = this.keptDice.sort(function(a, b) {
     return a - b;
   });
-  return (sorted[0] == sorted[1] - 1 && sorted[1] == sorted[2] - 1 &&
-          sorted[2] == sorted[3] - 1 && sorted[3] == sorted[4] - 1);
+  return (sorted[0] === sorted[1] - 1 && sorted[1] === sorted[2] - 1 &&
+          sorted[2] === sorted[3] - 1 && sorted[3] === sorted[4] - 1);
 };
 
 // Function to check Yamslam (all dice show same face)
 Game.prototype.isYamslam = function() {
-  return this.keptDice[0] == this.keptDice[1] == this.keptDice[2] == this.keptDice[3] == this.keptDice[4];
+  return this.keptDice[0] === this.keptDice[1] === this.keptDice[2] === this.keptDice[3] === this.keptDice[4];
 };

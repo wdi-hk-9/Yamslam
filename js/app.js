@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
   var game = new Game();
-  var p1 = new Player();
-  var p2 = new Player();
+  var p1 = new Player(1);
+  var p2 = new Player(2);
 
-  var currPlayer = "p1";
+  var currPlayer = p1;
 
   // opacity of chips
   var chipBase = 0.5;
@@ -49,28 +49,105 @@ $(document).ready(function() {
   };
 
   var checkCombo = function() {
-    if (game.isTwoPair()) {   // how to code for all chips?
+    if (game.isTwoPair()) {
       if (game.twoPairChips > 0) {
-        console.log(p1);
         $("#chipTwoPair").css("opacity", chipElig).on("click", function() {
-          p1.takeTwoPair(); // *** hard-coded!
+          currPlayer.takeTwoPair(); // HARD-CODED... FIX**
           game.twoPairChips--;
+          console.log("TWO PAIR CHIPS LEFT: " + game.twoPairChips);
+          console.log("ALL CHIPS LEFT: " + game.allChipsGone());
+          scoreboard();
+          gameOver();
           $("#chipTwoPair").css("opacity", chipBase);
-        console.log(p1);
          });
       }
     }
+    if (game.isThree() && game.threeChips > 0) {
+      $("#chipThree").css("opacity", chipElig).on("click", function() {
+        currPlayer.takeThree(); // HARD-CODED... FIX**
+        game.threeChips--;
+        console.log("THREE OF A KIND CHIPS LEFT: " + game.threeChips);
+        console.log("ALL CHIPS LEFT: " + game.allChipsGone());
+        scoreboard();
+        gameOver();
+        $("#chipThree").css("opacity", chipBase);
+       });
+    }
+    if (game.isSmall()) {
+      if (game.smallChips > 0) {
+        $("#chipSmall").css("opacity", chipElig).on("click", function() {
+          p1.takeSmall(); // HARD-CODED... FIX**
+          scoreboard();
+          gameOver();
+          game.smallChips--;
+          $("#chipSmall").css("opacity", chipBase);
+         });
+      }
+    }
+    if (game.isFlush()) {
+      if (game.flushChips > 0) {
+        $("#chipFlush").css("opacity", chipElig).on("click", function() {
+          p1.takeFlush(); // HARD-CODED... FIX**
+          scoreboard();
+          gameOver();
+          game.flushChips--;
+          $("#chipFlush").css("opacity", chipBase);
+         });
+      }
+    }
+    if (game.isFull()) {
+      if (game.fullChips > 0) {
+        $("#chipFull").css("opacity", chipElig).on("click", function() {
+          p1.takeFull(); // HARD-CODED... FIX**
+          scoreboard();
+          gameOver();
+          game.fullChips--;
+          $("#chipFull").css("opacity", chipBase);
+         });
+      }
+    }
+    if (game.isFour()) {
+      if (game.fourChips > 0) {
+        $("#chipFour").css("opacity", chipElig).on("click", function() {
+          p1.takeFour(); // HARD-CODED... FIX**
+          scoreboard();
+          gameOver();
+          game.fourChips--;
+          $("#chipFour").css("opacity", chipBase);
+         });
+      }
+    }
+    if (game.isLarge()) {
+      if (game.largeChips > 0) {
+        $("#chipLarge").css("opacity", chipElig).on("click", function() {
+          p1.takeLarge(); // HARD-CODED... FIX**
+          scoreboard();
+          gameOver();
+          game.largeChips--;
+          $("#chipLarge").css("opacity", chipBase);
+         });
+      }
+    }
+    // if (game.isYamslam()) {
+    //     $(".chip").css("opacity", chipElig).on("click", function() {
+    //       p1.[takechip](); // HARD-CODED... FIX**
+    //       scoreboard();
+    //       gameOver();
+    //       game.[the chip that was taken decrements]--;
+    //       $(".chip").css("opacity", chipBase);
+    //      });
+    // }
   };
 
   var changePlayer = function() {
-    if (currPlayer === "p1") {
-      currPlayer = "p2";
+    if (currPlayer === p1) {
+      currPlayer = p2;
     }
     else {
-      currPlayer = "p1";
+      currPlayer = p1;
     }
-    var playerNum = currPlayer.replace("p","");
-    $("#player").html(playerNum);
+    console.log(currPlayer);
+    $("#player").html(currPlayer.id);
   }
 
   var resetDiceImgAttr = function() {
@@ -85,6 +162,7 @@ $(document).ready(function() {
 
   $("#ok-btn").on("click", function() {
     $(".dice").off("click");
+    console.log(currPlayer);
     changePlayer();
     // reset dice and rolls remaining
     game.resetDiceRolls();
@@ -92,6 +170,26 @@ $(document).ready(function() {
     $("#rolls-remain").html(game.rollsRemain);
     $(".chip").css("opacity", chipBase)
   });
+
+  var scoreboard = function() {
+    $("#p1-score").html(p1.score);
+    $("#p1-twoPair").html(p1.twoPair);
+    $("#p1-three").html(p1.three);
+    $("#p1-small").html(p1.small);
+    $("#p1-flush").html(p1.flush);
+    $("#p1-full").html(p1.full);
+    $("#p1-four").html(p1.four);
+    $("#p1-large").html(p1.large);
+  };
+
+  var gameOver = function() {
+
+    if (game.allChipsGone()) {
+      console.log("game over");
+      alert("Game Over. P1's Score: " + p1.score +". P2's Score: " + p2.score + ". The winner is X." );
+    }
+  };
+
 
 });
 
