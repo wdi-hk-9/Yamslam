@@ -67,6 +67,7 @@ $(document).ready(function() {
     $("#player").html(game.currPlayer);
     // reset dice and rolls remaining
     game.resetDiceRolls();
+    $(".dice").children().removeClass("dice-kept");
     $(".dice-active img").each(function(idx){
       $(this).attr("src", "images/" + game.activeDice[idx] + "dice.png");
       $(this).attr("data-value", game.activeDice[idx]);
