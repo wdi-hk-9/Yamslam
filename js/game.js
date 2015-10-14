@@ -41,6 +41,23 @@ Game.prototype.unkeepDice = function(diceVal) {
   }
 };
 
+Game.prototype.changePlayer = function() {
+
+}
+
+Game.prototype.resetGame = function() {
+  this.activeDice = [0,0,0,0,0];
+  this.keptDice   = [];
+  this.rollsRemain = this.MAXROLLS;
+  this.twoPairChips = 4;
+  this.threeChips   = 4;
+  this.smallChips   = 4;
+  this.flushChips   = 4;
+  this.fullChips    = 4;
+  this.fourChips    = 4;
+  this.largeChips   = 4;
+};
+
 Game.prototype.printBoard = function() {
   console.log("ACTIVE: " + this.activeDice);
   console.log(" KEPT:  " + this.keptDice);
@@ -49,6 +66,17 @@ Game.prototype.printBoard = function() {
 //------------------------------------------------
 // Functions to check combinations
 //------------------------------------------------
+
+// Function to check whether dice match ANY combination
+Game.prototype.isCombo = function() {
+  if (game.isTwoPair() || game.isThree() || game.isSmall() || game.isFlush() || game.isFull() || game.isFour() || game.isLarge() || game.isYamslam()) {
+    console.log("there is a combo");
+    return true;
+  }
+  else {
+    return false;
+  }
+};
 
 // Function to check Two Pair [a,a,b,b,c] or [a,a,b,c,c] or [a,b,b,c,c] in sorted array
 Game.prototype.isTwoPair = function() {
@@ -134,46 +162,41 @@ Game.prototype.isLarge = function() {
 
 // Function to check Yamslam (all dice show same face)
 Game.prototype.isYamslam = function() {
-  if (this.keptDice.length == 5) {
-    for (var i = 0; i < this.keptDice.length - 1; i++) {
-      return (this.keptDice[i] == this.keptDice[i+1]);
-    }
-  } else {
-    return false;
-  }
+  return this.keptDice[0] == this.keptDice[1] == this.keptDice[2] == this.keptDice[3] == this.keptDice[4];
 };
 
 
-// To test in console
-var game = new Game();
-var p1 = new Player();
-var p2 = new Player();
+// // To test in console
+// var game = new Game();
+// // var p1 = new Player();
+// // var p2 = new Player();
 
-console.log("### GAME STARTED");
-game.roll();
-game.printBoard();
-console.log("### KEEP FIRST ACTIVE DICE");
-game.keepDice(game.activeDice[0]);
-game.printBoard();
-console.log("### ROLL")
-game.roll();
-game.printBoard();
-console.log("### KEEP FIRST ACTIVE DICE");
-game.keepDice(game.activeDice[0]);
-game.printBoard();
-console.log("### UNKEEP FIRST KEPT DICE");
-game.unkeepDice(game.keptDice[0]);
-game.printBoard();
-console.log("### ROLL")
-game.roll();
-game.printBoard();
-console.log("** KEEP FIRST ACTIVE DICE");
-game.keepDice(game.activeDice[0]);
-game.printBoard();
-game.isYamslam();
-game.isTwoPair();
-game.isThree();
-game.isFour();
-game.isLarge();
-game.isSmall();
-game.isFlush();
+// console.log("### GAME STARTED");
+// game.roll();
+// game.printBoard();
+// console.log("### KEEP FIRST ACTIVE DICE");
+// game.keepDice(game.activeDice[0]);
+// game.printBoard();
+// console.log("### ROLL");
+// game.roll();
+// game.printBoard();
+// console.log("### KEEP FIRST ACTIVE DICE");
+// game.keepDice(game.activeDice[0]);
+// game.printBoard();
+// console.log("### UNKEEP FIRST KEPT DICE");
+// game.unkeepDice(game.keptDice[0]);
+// game.printBoard();
+// console.log("### ROLL");
+// game.roll();
+// game.printBoard();
+// console.log("** KEEP FIRST ACTIVE DICE");
+// game.keepDice(game.activeDice[0]);
+// game.printBoard();
+// game.isYamslam();
+// game.isTwoPair();
+// game.isThree();
+// game.isFour();
+// game.isLarge();
+// game.isSmall();
+// game.isFlush();
+// game.isCombo();
