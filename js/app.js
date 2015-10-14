@@ -70,6 +70,7 @@ $(document).ready(function() {
       $(this).attr("src", "images/" + game.activeDice[idx] + "dice.png");
       $(this).attr("data-value", game.activeDice[idx]);
     });
+    $(".dice").css("opacity", "1");
     $("#rolls-remain").html(game.rollsRemain);
   });
 
