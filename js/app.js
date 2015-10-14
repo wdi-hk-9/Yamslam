@@ -4,7 +4,13 @@ $(document).ready(function() {
   var p1 = new Player();
   var p2 = new Player();
 
-  $(".chip").css("opacity", "0.6");
+  var currPlayer = "p1";
+
+  // opacity of chips
+  var chipBase = 0.5;
+  var chipElig = 1;
+  var chipGone = 0.05;
+  $(".chip").css("opacity", chipBase);
 
   var changeDiceImages = function() {
     game.roll();
@@ -43,37 +49,47 @@ $(document).ready(function() {
   };
 
   var checkCombo = function() {
-    if (game.isTwoPair) {   // how to code for all chips?
+    if (game.isTwoPair()) {   // how to code for all chips?
       if (game.twoPairChips > 0) {
-        $("#chipTwoPair").css("opacity", "1");
+        $("#chipTwoPair").css("opacity", chipElig);
         $("#chipTwoPair").on("click", function() {
-          game.currPlayer.takeTwoPair();  // should currPlayer be in Game or Player?
-          game.twoPairChips--;
-          $("#chipTwoPair").css("opacity", "0.6");
-        });
+        //   currPlayer.takeTwoPair();
+           game.twoPairChips--;
+           $("#chipTwoPair").css("opacity", chipBase);
+         });
       }
     }
   };
 
-  $("#ok-btn").on("click", function() {
-    $(".dice").off("click");
-    // change player
-    if (game.currPlayer == 1) {
-      game.currPlayer = 2;
+  var changePlayer = function() {
+    if (currPlayer === "p1") {
+      currPlayer = "p2";
     }
     else {
-      game.currPlayer = 1;
+      currPlayer = "p1";
     }
-    $("#player").html(game.currPlayer);
-    // reset dice and rolls remaining
-    game.resetDiceRolls();
+    var playerNum = currPlayer.replace("p","");
+    $("#player").html(playerNum);
+  }
+
+  var resetDiceImgAttr = function() {
     $(".dice").children().removeClass("dice-kept");
     $(".dice-active img").each(function(idx){
       $(this).attr("src", "images/" + game.activeDice[idx] + "dice.png");
       $(this).attr("data-value", game.activeDice[idx]);
     });
     $(".dice").css("opacity", "1");
+    }
+
+
+  $("#ok-btn").on("click", function() {
+    $(".dice").off("click");
+    changePlayer();
+    // reset dice and rolls remaining
+    game.resetDiceRolls();
+    resetDiceImgAttr();
     $("#rolls-remain").html(game.rollsRemain);
+    $(".chip").css("opacity", chipBase)
   });
 
 });

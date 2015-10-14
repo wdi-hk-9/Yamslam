@@ -15,8 +15,6 @@ var Game = function() {
   this.fullChips    = 4;
   this.fourChips    = 4;
   this.largeChips   = 4;
-
-  this.currPlayer   = 1;
 };
 
 // Roll all the active dices
@@ -58,7 +56,6 @@ Game.prototype.resetGame = function() {
   this.fullChips    = 4;
   this.fourChips    = 4;
   this.largeChips   = 4;
-  this.currPlayer   = 1;
 };
 
 Game.prototype.printBoard = function() {
@@ -84,7 +81,7 @@ Game.prototype.isCombo = function() {
 // Function to check Two Pair [a,a,b,b,c] or [a,a,b,c,c] or [a,b,b,c,c] in sorted array
 Game.prototype.isTwoPair = function() {
   var sorted = this.keptDice.sort();
-  if(sorted.length != 5) {
+  if(sorted.length < 4) {
     return false;
   } else {
     return ((sorted[0] == sorted[1] && sorted[2] == sorted[3]) ||
