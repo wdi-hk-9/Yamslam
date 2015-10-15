@@ -106,7 +106,7 @@ $(document).ready(function() {
       $("#modal-p1-score").html(p1.score);
       $("#modal-p2-score").html(p2.score);
       $("#gameOverModal").modal("show");
-      $("modal-yes").on("click", resetGame());
+      $("#modal-yes").on("click", resetGame());
     }
   };
 
