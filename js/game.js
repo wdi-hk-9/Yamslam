@@ -14,13 +14,13 @@ var Game = function() {
   };
 
 
-  this.twoPairChips = 2;
-  this.threeChips   = 2;
-  this.smallChips   = 2;
-  this.flushChips   = 2;
-  this.fullChips    = 1;
-  this.fourChips    = 1;
-  this.largeChips   = 1;
+  this.twoPairChips = 4;
+  this.threeChips   = 4;
+  this.smallChips   = 4;
+  this.flushChips   = 4;
+  this.fullChips    = 4;
+  this.fourChips    = 4;
+  this.largeChips   = 4;
 };
 
 Game.prototype.allChipsGone = function() {
@@ -181,5 +181,5 @@ Game.prototype.isLarge = function() {
 
 // Function to check Yamslam (all dice show same face)
 Game.prototype.isYamslam = function() {
-  return this.keptDice[0] === this.keptDice[1] === this.keptDice[2] === this.keptDice[3] === this.keptDice[4];
+  return this.keptDice[0] === this.keptDice[1] && this.keptDice[1] === this.keptDice[2] && this.keptDice[2] === this.keptDice[3] && this.keptDice[3] === this.keptDice[4];
 };
