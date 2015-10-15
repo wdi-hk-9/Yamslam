@@ -8,9 +8,15 @@ var Game = function() {
   this.MAXROLLS     = 3;
   this.rollsRemain  = this.MAXROLLS;
 //
+  this.twoPairChips = {
+    amount: 1,
+    point: 5
+  };
+
+
   this.twoPairChips = 1;
   this.threeChips   = 1;
-  this.smallChips   = 0;
+  this.smallChips   = 1;
   this.flushChips   = 0;
   this.fullChips    = 0;
   this.fourChips    = 0;

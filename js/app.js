@@ -16,6 +16,7 @@ $(document).ready(function() {
       changeDiceImages();
       game.rollsRemain--;
       $("#rolls-remain").html(game.rollsRemain);
+      $("#ok-btn").attr("disabled", false);
       if (game.rollsRemain === 2) {
         diceClick();
       }
@@ -35,6 +36,7 @@ $(document).ready(function() {
       } else {
         dice.css("opacity", OPACFULL);
         game.unkeepDice(value);
+        dice.children().removeClass("dice-kept");
       }
       game.printBoard();
     });
@@ -54,6 +56,7 @@ $(document).ready(function() {
     changePlayer();
     changeTurnResets();
     $("#roll-btn").attr("disabled", false);
+    $("#ok-btn").attr("disabled", true);
   });
 
   var changeTurnResets = function() {
@@ -105,17 +108,24 @@ $(document).ready(function() {
     if (game.allChipsGone()) {
       $("#modal-p1-score").html(p1.score);
       $("#modal-p2-score").html(p2.score);
+      $("#gameOverModal").on("show.bs.modal", function (event) {
+        $(this).find("#modal-yes").on("click", resetGame());
+      });
       $("#gameOverModal").modal("show");
-      $("#modal-yes").on("click", resetGame());
+
     }
   };
 
   var resetGame = function() {
+    console.log("tafs")
     currPlayer = p1;
     $(".chip").css("opacity", OPACHALF);
     game.resetDice();
+    resetDiceImg();
     game.resetRolls();
     $("#rolls-remain").html(game.rollsRemain);
+    $("#roll-btn").removeAttr("disabled");
+    $('td').html("0");
   }
 
 //-------------------------------------------------------------
@@ -211,73 +221,71 @@ $(document).ready(function() {
   var chipTwoPair = function() {
     currPlayer.takeTwoPair();
     game.twoPairChips--;
-    afterTakeChip();
     if (game.twoPairChips == 0) {
       $("#chipTwoPair").css("opacity", OPACMIN).addClass("chip-gone");
     }
+    afterTakeChip();
   };
 
   var chipThree = function() {
     currPlayer.takeThree();
     game.threeChips--;
-    afterTakeChip();
     if (game.threeChips == 0) {
       $("#chipThree").css("opacity", OPACMIN).addClass("chip-gone");
     }
+    afterTakeChip();
   };
 
   var chipSmall = function() {
     currPlayer.takeSmall();
     game.smallChips--;
-    afterTakeChip();
     if (game.smallChips == 0) {
       $("#chipSmall").css("opacity", OPACMIN).addClass("chip-gone");
     }
+    afterTakeChip();
   };
 
   var chipFlush = function() {
     currPlayer.takeFlush();
     game.flushChips--;
-    afterTakeChip();
     if (game.flushChips == 0) {
       $("#chipFlush").css("opacity", OPACMIN).addClass("chip-gone");
     }
+    afterTakeChip();
   };
 
   var chipFull = function() {
     currPlayer.takeFull();
     game.fullChips--;
-    afterTakeChip();
     if (game.fullChips == 0) {
       $("#chipFull").css("opacity", OPACMIN).addClass("chip-gone");
     }
+    afterTakeChip();
   };
 
   var chipFour = function() {
     currPlayer.takeFour();
     game.fourChips--;
-    afterTakeChip();
     if (game.fourChips == 0) {
       $("#chipFour").css("opacity", OPACMIN).addClass("chip-gone");
     }
+    afterTakeChip();
   };
 
   var chipLarge = function() {
     currPlayer.takeLarge();
     game.largeChips--;
-    afterTakeChip();
     if (game.largeChips == 0) {
       $("#chipLarge").css("opacity", OPACMIN).addClass("chip-gone");
     }
+    afterTakeChip();
   };
 
   var afterTakeChip = function() {
     updateScoreboard();
     checkGameOver();
     $("#roll-btn").attr("disabled", true);
-    if($(".chip").not(".chip-gone")) {
-      $(".chip").css("opacity", OPACHALF).off("click");
-    }
+    $(".chip").not(".chip-gone").css("opacity", OPACHALF).off("click");
   };
 
 //-------------------------------------------------------------

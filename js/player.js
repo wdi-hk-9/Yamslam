@@ -25,6 +25,12 @@ Player.prototype.resetPlayer = function() {
 // Functions for player taking a chip
 //-----------------------------------------
 
+// Player.prototype.takeChip = function (name, gameObj) {
+//   this[name] += 1;
+//   this.score += gameObj.[name + "Chips"].point;
+//   // this.score += game.twoScore; // never call game directly
+// }
+
 Player.prototype.takeTwoPair = function() {
   this.twoPair += 1;
   this.score   += 5;
