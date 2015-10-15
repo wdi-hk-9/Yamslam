@@ -1,12 +1,32 @@
 h2 {
   font-size: 22px;
-  color: red;
+  color: #DA2A00;
   margin: 20px 10px 0 10px;
 }
 
 h3 {
   font-size: 18px;
   margin: 10px;
+}
+
+body {
+  background: -webkit-linear-gradient(90deg, #353341 10%, #928DAB 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #353341 10%, #928DAB 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #353341 10%, #928DAB 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #353341 10%, #928DAB 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #353341 10%, #928DAB 90%); /* W3C */
+}
+
+div.container {
+  margin-top: 5px;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover {
+  background-color: #DA2A00;
+}
+
+.nav-pills > li > a, .nav-pills > li > a {
+  color: #DA2A00;
 }
 
 .btn {
@@ -20,7 +40,7 @@ h3 {
 }
 
 .combinations.row {
-  margin: 15px 10px;
+  margin: 10px 10px;
 }
 
 .container {
