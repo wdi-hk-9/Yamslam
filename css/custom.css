@@ -1,0 +1,122 @@
+body {
+  background: -webkit-linear-gradient(90deg, #304352 10%, #6C6966 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #304352 10%, #4C4A47 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #304352 10%, #4C4A47 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #304352 10%, #4C4A47 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #304352 10%, #4C4A47 90%); /* W3C */
+}
+
+div.container {
+  margin-top: 5px;
+}
+
+div.instr {
+  height: 400px;
+}
+
+div.seven-cols {
+  margin-top: 10px;
+}
+
+h1 {
+  color: white;
+  font-family: 'Oxygen', sans-serif;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 22px;
+  color: #DA2A00;
+  margin: 20px 10px 0 10px;
+  font-family: 'Oxygen', sans-serif;
+}
+
+h3 {
+  font-size: 18px;
+  color: white;
+  margin: 10px;
+}
+
+p#turn-text {
+  font-family: 'Oxygen', sans-serif;
+  font-size: 20px;
+  color: #DA2A00;
+}
+
+div.table-well {
+  padding-bottom: 5px;
+}
+
+.btn {
+  width: 180px;
+  height: 45px;
+  font-size: 18px;
+}
+
+.chip {
+  background: linear-gradient(rgba(230, 184, 0, 0.45),rgba(239, 183, 61, 0.45)) /*top, transparent yellow, faked with gradient */
+}
+
+.chip-sample {
+  margin-top: 20px;
+}
+
+.combinations.row {
+  margin: 10px 10px;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover {
+  background-color: #DA2A00;
+}
+
+.nav-pills > li > a, .nav-pills > li > a {
+  color: #DA2A00;
+}
+
+.text-center {
+  text-align: center;
+}
+
+#dice-box-left {
+  height: 250px;
+  padding: 110px 0;
+}
+
+#dice-box-middle {
+  height: 250px;
+}
+
+#dice-box-right {
+  height: 250px;
+  padding: 50px 0;
+}
+
+
+@media (min-width: 768px) {
+  .seven-cols .col-md-1,
+  .seven-cols .col-sm-1,
+  .seven-cols .col-lg-1  {
+    width: 100%;
+    *width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .seven-cols .col-md-1,
+  .seven-cols .col-sm-1,
+  .seven-cols .col-lg-1  {
+    width: 14.285714285714285714285714%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .seven-cols .col-md-1,
+  .seven-cols .col-sm-1,
+  .seven-cols .col-lg-1  {
+    width: 14.285714285714285714285714%;
+  }
+}
