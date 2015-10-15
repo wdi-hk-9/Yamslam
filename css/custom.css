@@ -1,3 +1,23 @@
+body {
+  background: -webkit-linear-gradient(90deg, #304352 10%, #6C6966 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #304352 10%, #4C4A47 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #304352 10%, #4C4A47 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #304352 10%, #4C4A47 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #304352 10%, #4C4A47 90%); /* W3C */
+}
+
+div.container {
+  margin-top: 5px;
+}
+
+div.instr {
+  height: 400px;
+}
+
+div.seven-cols {
+  margin-top: 10px;
+}
+
 h1 {
   color: white;
   font-family: 'Oxygen', sans-serif;
@@ -17,32 +37,24 @@ h3 {
   margin: 10px;
 }
 
-body {
-  background: -webkit-linear-gradient(90deg, #304352 10%, #6C6966 90%); /* Chrome 10+, Saf5.1+ */
-  background:    -moz-linear-gradient(90deg, #304352 10%, #4C4A47 90%); /* FF3.6+ */
-  background:     -ms-linear-gradient(90deg, #304352 10%, #4C4A47 90%); /* IE10 */
-  background:      -o-linear-gradient(90deg, #304352 10%, #4C4A47 90%); /* Opera 11.10+ */
-  background:         linear-gradient(90deg, #304352 10%, #4C4A47 90%); /* W3C */
-}
-
-div.container {
-  margin-top: 5px;
-}
-
-div.instr {
-  height: 400px;
-}
-
 p#turn-text {
   font-family: 'Oxygen', sans-serif;
   font-size: 20px;
   color: #DA2A00;
 }
 
+div.table-well {
+  padding-bottom: 5px;
+}
+
 .btn {
   width: 180px;
   height: 45px;
   font-size: 18px;
+}
+
+.chip {
+  background: linear-gradient(rgba(230, 184, 0, 0.45),rgba(239, 183, 61, 0.45)) /*top, transparent yellow, faked with gradient */
 }
 
 .chip-sample {

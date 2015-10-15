@@ -6,10 +6,15 @@ $(document).ready(function() {
   var currPlayer = p1;
 
   // opacity levels for images
-  var OPACHALF = 0.5;
+  var OPACHALF = 1;
   var OPACFULL = 1;
-  var OPACMIN = 0.05;
+  var OPACMIN = 0.1;
+  var DICEOPACHALF = 0.6;
   $(".chip").css("opacity", OPACHALF);
+
+  // transparent color filters for chips
+  var transGreen = "linear-gradient(rgba(57, 143, 40, 0.45),rgba(57, 143, 40, 0.45))";
+  var transYellow = "linear-gradient(rgba(230, 184, 0, 0.45),rgba(239, 183, 61, 0.45))";
 
   $("#roll-btn").on("click", function() {
     if (game.rollsRemain > 0) {
@@ -29,7 +34,7 @@ $(document).ready(function() {
       var dice = $(this);
       var value = parseInt(dice.children().attr('data-value'));
       if (dice.css("opacity") == OPACFULL) {
-        dice.css("opacity", OPACHALF);
+        dice.css("opacity", DICEOPACHALF);
         dice.children().addClass("dice-kept");
         game.keepDice(value);
         checkCombo();
@@ -57,6 +62,7 @@ $(document).ready(function() {
     changeTurnResets();
     $("#roll-btn").attr("disabled", false);
     $("#ok-btn").attr("disabled", true);
+    $(".chip").not(".chip-gone").css("opacity", OPACHALF).css("background", transYellow).off("click");
   });
 
   var changeTurnResets = function() {
@@ -119,7 +125,7 @@ $(document).ready(function() {
   var resetGame = function() {
     console.log("tafs")
     currPlayer = p1;
-    $(".chip").css("opacity", OPACHALF);
+    $(".chip").css("opacity", OPACHALF).css("background", transYellow);
     game.resetDice();
     resetDiceImg();
     game.resetRolls();
@@ -133,37 +139,37 @@ $(document).ready(function() {
 //-------------------------------------------------------------
   var checkCombo = function() {
     if (game.isTwoPair() && game.twoPairChips > 0) {
-      $("#chipTwoPair").css("opacity", OPACFULL).on("click", function() {
+      $("#chipTwoPair").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipTwoPair();
       });
     }
     if (game.isThree() && game.threeChips > 0) {
-      $("#chipThree").css("opacity", OPACFULL).on("click", function() {
+      $("#chipThree").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipThree();
       });
     }
     if (game.isSmall() && game.smallChips > 0) {
-      $("#chipSmall").css("opacity", OPACFULL).on("click", function() {
+      $("#chipSmall").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipSmall();
       });
     }
     if (game.isFlush() && game.flushChips > 0) {
-      $("#chipFlush").css("opacity", OPACFULL).on("click", function() {
+      $("#chipFlush").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipFlush();
       });
     }
     if (game.isFull() && game.fullChips > 0) {
-      $("#chipFull").css("opacity", OPACFULL).on("click", function() {
+      $("#chipFull").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipFull();
       });
     }
     if (game.isFour() && game.fourChips > 0) {
-      $("#chipFour").css("opacity", OPACFULL).on("click", function() {
+      $("#chipFour").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipFour();
       });
     }
     if (game.isLarge() && game.largeChips > 0) {
-      $("#chipLarge").css("opacity", OPACFULL).on("click", function() {
+      $("#chipLarge").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipLarge();
       });
     }

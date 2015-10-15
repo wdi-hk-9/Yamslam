@@ -14,13 +14,13 @@ var Game = function() {
   };
 
 
-  this.twoPairChips = 1;
-  this.threeChips   = 1;
-  this.smallChips   = 1;
-  this.flushChips   = 0;
-  this.fullChips    = 0;
-  this.fourChips    = 0;
-  this.largeChips   = 0;
+  this.twoPairChips = 2;
+  this.threeChips   = 2;
+  this.smallChips   = 2;
+  this.flushChips   = 2;
+  this.fullChips    = 1;
+  this.fourChips    = 1;
+  this.largeChips   = 1;
 };
 
 Game.prototype.allChipsGone = function() {
