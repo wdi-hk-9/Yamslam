@@ -28,7 +28,7 @@ $(document).ready(function() {
     }
   });
 
-  // Player "keeps" dice by clicking on it. Can make active again by clicking again.
+  // Player "keeps" dice by clicking on dice. Can make active again by clicking again.
   var diceClick = function() {
     $(".dice").on("click", function(event) {
       var dice = $(this);
@@ -43,7 +43,6 @@ $(document).ready(function() {
         game.unkeepDice(value);
         dice.children().removeClass("dice-kept");
       }
-      game.printBoard();
     });
   };
 

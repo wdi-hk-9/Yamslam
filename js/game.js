@@ -62,13 +62,13 @@ Game.prototype.resetRolls = function() {
 
 Game.prototype.resetGame = function() {
   resetDiceRolls();
-  this.twoPairChips = 4;
-  this.threeChips   = 4;
-  this.smallChips   = 4;
-  this.flushChips   = 4;
-  this.fullChips    = 4;
-  this.fourChips    = 4;
-  this.largeChips   = 4;
+  this.twoPairChips = 2;
+  this.threeChips   = 2;
+  this.smallChips   = 1;
+  this.flushChips   = 1;
+  this.fullChips    = 1;
+  this.fourChips    = 0;
+  this.largeChips   = 0;
 };
 
 Game.prototype.printBoard = function() {
