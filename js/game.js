@@ -67,8 +67,8 @@ Game.prototype.resetGame = function() {
   this.smallChips   = 1;
   this.flushChips   = 1;
   this.fullChips    = 1;
-  this.fourChips    = 0;
-  this.largeChips   = 0;
+  this.fourChips    = 1;
+  this.largeChips   = 1;
 };
 
 Game.prototype.printBoard = function() {
