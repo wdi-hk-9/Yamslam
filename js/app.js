@@ -53,6 +53,7 @@ $(document).ready(function() {
     $(".dice").off("click");
     changePlayer();
     changeTurnResets();
+    $("#roll-btn").attr("disabled", false);
   });
 
   var changeTurnResets = function() {
@@ -209,6 +210,7 @@ $(document).ready(function() {
   var afterTakeChip = function() {
     updateScoreboard();
     checkGameOver();
+    $("#roll-btn").attr("disabled", true);
     if($(".chip").not(".chip-gone")) {
       $(".chip").css("opacity", OPACHALF).off("click");
     }
