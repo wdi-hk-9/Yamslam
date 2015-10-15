@@ -61,7 +61,6 @@ $(document).ready(function() {
     resetDiceImg();
     $("#rolls-remain").html(game.rollsRemain);
   }
-
   var changePlayer = function() {
     if (currPlayer === p1) {
       currPlayer = p2;
@@ -207,28 +206,33 @@ $(document).ready(function() {
       })
     }
   };
+  var afterTakeChip = function() {
+    updateScoreboard();
+    checkGameOver();
+    if($(".chip").not(".chip-gone")) {
+      $(".chip").css("opacity", OPACHALF).off("click");
+    }
+  };
 
   var chipTwoPair = function() {
     currPlayer.takeTwoPair();
     game.twoPairChips--;
-    updateScoreboard();
-    checkGameOver();
-    changePlayer();
-    $(".chip").css("opacity", OPACHALF).off("click");
+    afterTakeChip();
     if (game.twoPairChips == 0) {
-      $("#chipTwoPair").css("opacity", OPACMIN);
+      $("#chipTwoPair").css("opacity", OPACMIN).addClass("chip-gone");
     }
   };
 
   var chipThree = function() {
     currPlayer.takeThree();
     game.threeChips--;
-    updateScoreboard();
-    checkGameOver();
-    changePlayer();
-    $(".chip").css("opacity", OPACHALF).off("click");
+    afterTakeChip();
+    // updateScoreboard();
+    // checkGameOver();
+    // changePlayer();
+    // $(".chip").css("opacity", OPACHALF).off("click");
     if (game.threeChips == 0) {
-      $("#chipThree").css("opacity", OPACMIN);
+      $("#chipThree").css("opacity", OPACMIN).addClass("chip-gone");
     }
   };
 
