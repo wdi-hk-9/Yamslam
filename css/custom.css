@@ -18,6 +18,15 @@ div.seven-cols {
   margin-top: 10px;
 }
 
+div.table-well {
+  padding-bottom: 5px;
+}
+
+div#top {
+  margin: 0;
+  padding: 0;
+}
+
 h1 {
   color: white;
   font-family: 'Oxygen', sans-serif;
@@ -43,10 +52,6 @@ p#turn-text {
   color: #DA2A00;
 }
 
-div.table-well {
-  padding-bottom: 5px;
-}
-
 .btn {
   width: 180px;
   height: 45px;
@@ -54,7 +59,7 @@ div.table-well {
 }
 
 .chip {
-  background: linear-gradient(rgba(230, 184, 0, 0.45),rgba(239, 183, 61, 0.45)) /*top, transparent yellow, faked with gradient */
+  background: linear-gradient(rgba(255, 204, 0, 0.45),rgba(239, 183, 61, 0.45)) /*top, transparent yellow, faked with gradient */
 }
 
 .chip-sample {
@@ -69,7 +74,7 @@ div.table-well {
   margin-top: 20px;
 }
 
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover {
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:visited {
   background-color: #DA2A00;
 }
 

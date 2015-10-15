@@ -14,7 +14,7 @@ $(document).ready(function() {
 
   // transparent color filters for chips
   var transGreen = "linear-gradient(rgba(57, 143, 40, 0.45),rgba(57, 143, 40, 0.45))";
-  var transYellow = "linear-gradient(rgba(230, 184, 0, 0.45),rgba(239, 183, 61, 0.45))";
+  var transYellow = "linear-gradient(rgba(255, 204, 0, 0.45),rgba(239, 183, 61, 0.45))";
 
   $("#roll-btn").on("click", function() {
     if (game.rollsRemain > 0) {
@@ -174,49 +174,49 @@ $(document).ready(function() {
       });
     }
     if (game.isYamslam() && game.twoPairChips > 0) {
-      $("#chipTwoPair").css("opacity", OPACFULL).on("click", function() {
+      $("#chipTwoPair").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipTwoPair();
         currPlayer.score += 50;
         updateScoreboard();
       })
     }
     if (game.isYamslam() && threeChips > 0) {
-      $("#chipThree").css("opacity", OPACFULL).on("click", function() {
+      $("#chipThree").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipThree();
         currPlayer.score += 50;
         updateScoreboard();
       })
     }
     if (game.isYamslam() && smallChips > 0) {
-      $("#chipSmall").css("opacity", OPACFULL).on("click", function() {
+      $("#chipSmall").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipSmall();
         currPlayer.score += 50;
         updateScoreboard();
       })
     }
     if (game.isYamslam() && flushChips > 0) {
-      $("#chipFlush").css("opacity", OPACFULL).on("click", function() {
+      $("#chipFlush").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipFlush();
         currPlayer.score += 50;
         updateScoreboard();
       })
     }
     if (game.isYamslam() && fullChips > 0) {
-      $("#chipFull").css("opacity", OPACFULL).on("click", function() {
+      $("#chipFull").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipFull();
         currPlayer.score += 50;
         updateScoreboard();
       })
     }
     if (game.isYamslam() && fourChips > 0) {
-      $("#chipFour").css("opacity", OPACFULL).on("click", function() {
+      $("#chipFour").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipFour();
         currPlayer.score += 50;
         updateScoreboard();
       })
     }
     if (game.isYamslam() && largeChips > 0) {
-      $("#chipLarge").css("opacity", OPACFULL).on("click", function() {
+      $("#chipLarge").css("opacity", OPACFULL).css("background", transGreen).on("click", function() {
         chipLarge();
         currPlayer.score += 50;
         updateScoreboard();
