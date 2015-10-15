@@ -3,30 +3,13 @@ $(document).ready(function() {
   var game = new Game();
   var p1 = new Player(1);
   var p2 = new Player(2);
-
   var currPlayer = p1;
 
   // opacity levels for images
   var OPACHALF = 0.5;
   var OPACFULL = 1;
   var OPACMIN = 0.05;
-
-  var startTurn = function() {
-    if (($(".chip").css("opacity") != OPACMIN)) {
-      $(".chip").css("opacity", OPACHALF).off("click");
-    }
-  };
-
-  startTurn(); // gone chips come back to .5 opacity
-
-  var changeDiceImages = function() {
-    game.roll();
-    $(".dice-active img").not(".dice-kept").each(function(idx){
-      var image = $(this);
-        image.attr("src", "images/" + game.activeDice[idx] + "dice.png");
-        image.attr("data-value", game.activeDice[idx]);
-    });
-  };
+  $(".chip").css("opacity", OPACHALF);
 
   $("#roll-btn").on("click", function() {
     if (game.rollsRemain > 0) {
@@ -39,9 +22,9 @@ $(document).ready(function() {
     }
   });
 
+  // Player "keeps" dice by clicking on it. Can make active again by clicking again.
   var diceClick = function() {
     $(".dice").on("click", function(event) {
-        game.printBoard();
       var dice = $(this);
       var value = parseInt(dice.children().attr('data-value'));
       if (dice.css("opacity") == OPACFULL) {
@@ -53,19 +36,87 @@ $(document).ready(function() {
         dice.css("opacity", OPACFULL);
         game.unkeepDice(value);
       }
+      game.printBoard();
+    });
+  };
+
+  var changeDiceImages = function() {
+    game.roll();
+    $(".dice-active img").not(".dice-kept").each(function(idx){
+      var image = $(this);
+        image.attr("src", "images/" + game.activeDice[idx] + "dice.png");
+        image.attr("data-value", game.activeDice[idx]);
     });
   };
 
   $("#ok-btn").on("click", function() {
     $(".dice").off("click");
-    console.log(currPlayer);
     changePlayer();
-    // reset dice and rolls remaining
-    game.resetDiceRolls();
-    resetDiceImgAttr();
-    $("#rolls-remain").html(game.rollsRemain);
-    $(".chip").css("opacity", OPACHALF)
+    changeTurnResets();
   });
+
+  var changeTurnResets = function() {
+    game.resetDice();
+    game.resetRolls();
+    resetDiceImg();
+    $("#rolls-remain").html(game.rollsRemain);
+  }
+
+  var changePlayer = function() {
+    if (currPlayer === p1) {
+      currPlayer = p2;
+    }
+    else {
+      currPlayer = p1;
+    }
+    $("#player").html(currPlayer.id);
+  };
+
+  var resetDiceImg = function() {
+    $(".dice").children().removeClass("dice-kept");
+    $(".dice-active img").each(function(idx){
+      $(this).attr("src", "images/" + game.activeDice[idx] + "dice.png");
+      $(this).attr("data-value", game.activeDice[idx]);
+    });
+    $(".dice").css("opacity", OPACFULL);
+  };
+
+  var updateScoreboard = function() {
+      $("#p1-score").html(p1.score);
+      $("#p1-twoPair").html(p1.twoPair);
+      $("#p1-three").html(p1.three);
+      $("#p1-small").html(p1.small);
+      $("#p1-flush").html(p1.flush);
+      $("#p1-full").html(p1.full);
+      $("#p1-four").html(p1.four);
+      $("#p1-large").html(p1.large);
+
+      $("#p2-score").html(p2.score);
+      $("#p2-twoPair").html(p2.twoPair);
+      $("#p2-three").html(p2.three);
+      $("#p2-small").html(p2.small);
+      $("#p2-flush").html(p2.flush);
+      $("#p2-full").html(p2.full);
+      $("#p2-four").html(p2.four);
+      $("#p2-large").html(p2.large);
+  };
+
+  var checkGameOver = function() {
+    if (game.allChipsGone()) {
+      $("#modal-p1-score").html(p1.score);
+      $("#modal-p2-score").html(p2.score);
+      $("#gameOverModal").modal("show");
+      $("modal-yes").on("click", resetGame());
+    }
+  };
+
+  var resetGame = function() {
+    currPlayer = p1;
+    $(".chip").css("opacity", OPACHALF);
+    game.resetDice();
+    game.resetRolls();
+    $("#rolls-remain").html(game.rollsRemain);
+  }
 
 //-------------------------------------------------------------
 // Functions to check dice vs combinations, take chip, update scores (not DRY)
@@ -162,6 +213,7 @@ $(document).ready(function() {
     game.twoPairChips--;
     updateScoreboard();
     checkGameOver();
+    changePlayer();
     $(".chip").css("opacity", OPACHALF).off("click");
     if (game.twoPairChips == 0) {
       $("#chipTwoPair").css("opacity", OPACMIN);
@@ -173,6 +225,7 @@ $(document).ready(function() {
     game.threeChips--;
     updateScoreboard();
     checkGameOver();
+    changePlayer();
     $(".chip").css("opacity", OPACHALF).off("click");
     if (game.threeChips == 0) {
       $("#chipThree").css("opacity", OPACMIN);
@@ -184,6 +237,7 @@ $(document).ready(function() {
     game.smallChips--;
     updateScoreboard();
     checkGameOver();
+    changePlayer();
     $(".chip").css("opacity", OPACHALF).off("click");
     if (game.smallChips == 0) {
       $("#chipSmall").css("opacity", OPACMIN);
@@ -195,6 +249,7 @@ $(document).ready(function() {
     game.flushChips--;
     updateScoreboard();
     checkGameOver();
+    changePlayer();
     $(".chip").css("opacity", OPACHALF).off("click");
     if (game.flushChips == 0) {
       $("#chipFlush").css("opacity", OPACMIN);
@@ -206,6 +261,7 @@ $(document).ready(function() {
     game.fullChips--;
     updateScoreboard();
     checkGameOver();
+    changePlayer();
     $(".chip").css("opacity", OPACHALF).off("click");
     if (game.fullChips == 0) {
       $("#chipFull").css("opacity", OPACMIN);
@@ -217,6 +273,7 @@ $(document).ready(function() {
     game.fourChips--;
     updateScoreboard();
     checkGameOver();
+    changePlayer();
     $(".chip").css("opacity", OPACHALF).off("click");
     if (game.fourChips == 0) {
       $("#chipFour").css("opacity", OPACMIN);
@@ -228,60 +285,13 @@ $(document).ready(function() {
     game.largeChips--;
     updateScoreboard();
     checkGameOver();
+    changePlayer();
+    changePlayer();
     $(".chip").css("opacity", OPACHALF).off("click");
     if (game.largeChips == 0) {
       $("#chipLarge").css("opacity", OPACMIN);
     }
   };
-
-  var changePlayer = function() {
-    if (currPlayer === p1) {
-      currPlayer = p2;
-    }
-    else {
-      currPlayer = p1;
-    }
-    console.log(currPlayer);
-    $("#player").html(currPlayer.id);
-  }
 //-------------------------------------------------------------
-
-  var resetDiceImgAttr = function() {
-    $(".dice").children().removeClass("dice-kept");
-    $(".dice-active img").each(function(idx){
-      $(this).attr("src", "images/" + game.activeDice[idx] + "dice.png");
-      $(this).attr("data-value", game.activeDice[idx]);
-    });
-    $(".dice").css("opacity", "1");
-    }
-
-  var updateScoreboard = function() {
-      $("#p1-score").html(p1.score);
-      $("#p1-twoPair").html(p1.twoPair);
-      $("#p1-three").html(p1.three);
-      $("#p1-small").html(p1.small);
-      $("#p1-flush").html(p1.flush);
-      $("#p1-full").html(p1.full);
-      $("#p1-four").html(p1.four);
-      $("#p1-large").html(p1.large);
-
-      $("#p2-score").html(p2.score);
-      $("#p2-twoPair").html(p2.twoPair);
-      $("#p2-three").html(p2.three);
-      $("#p2-small").html(p2.small);
-      $("#p2-flush").html(p2.flush);
-      $("#p2-full").html(p2.full);
-      $("#p2-four").html(p2.four);
-      $("#p2-large").html(p2.large);
-  };
-
-  var checkGameOver = function() {
-    if (game.allChipsGone()) {
-      $("#modal-p1-score").html(p1.score);
-      $("#modal-p2-score").html(p2.score);
-      $("#gameOverModal").modal("show");
-      $("modal-yes").on("click", resetGame()); // NEED TO WRITE RESETGAME FUNCTION
-    }
-  };
 
 });
